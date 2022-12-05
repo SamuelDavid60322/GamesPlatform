@@ -1,29 +1,25 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
 <div class="text-center">
-    <h1 class="display-4 text-white">Games Available to play</h1>
-    
+    <h1 class="display-4 text-white">Featured Games</h1>
 </div>
 
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="~/image/gameimages/football.jpg" alt="Card image cap">
+<div class="card" style="width: 25rem;">
+    <img src="~/image/gameimages/football.jpg" class="card-img-top" alt="...">
   <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="~/Views/Play/PlayGame.cshtml" class="btn btn-primary">Play</a>
+        <i class="bi bi-apple"></i>
+        <i class="fas fa-camera-retro"></i>
+    <h5 class="card-title">Reaction Time Test</h5>
+    <p class="card-text">€59.99</p>
+    <a href="#" class="btn btn-primary">Add To Cart</a>
   </div>
 </div>
 
-<!-- Play.iDevGames.co.uk Responsive Embed Code for Reaction -->
-@*<div style="position: relative;height: 0;overflow: hidden;padding-bottom: 56.25%;">
+<div style="position: relative;height: 0;overflow: hidden;padding-bottom: 56.25%;">
     <iframe id="embededGame" src="https://play.idevgames.co.uk/embed/reaction" scrolling="no" seamless="seamless" frameBorder="0" style="position: absolute;top:0;left: 0;width: 100%;height: 100%;">Browser not compatible.</iframe>
-</div>*@
-<!-- End Embed Code -->
-@*<div class="buttonsFullwide">
-    <div class="col-md-6" style="padding:0px;">
-        <button onclick="goFullscreen('embededGame'); return false" class="playBtn" style="margin: auto; width: 100%;"><span class="glyphicon glyphicon-resize-full"></span> Fullscreen</button>
-    </div>
-</div>*@
+</div>
+
+
 
