@@ -1,10 +1,10 @@
 ﻿namespace GamesPlatform.Models
 {
-    public class CategoryModel
+    public class Category
     {
-        public string CategoryID { get; set; }
+        public int CategoryID { get; set; }
         public string CategoryName { get; set; }
         public string CategoryDescription { get; set; }
-        public  List<GamesModel> Games { get; set; }
+        public  List<Games> Games { get; set; }
     }
 }

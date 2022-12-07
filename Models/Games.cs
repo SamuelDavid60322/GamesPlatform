@@ -1,11 +1,11 @@
 ﻿namespace GamesPlatform.Models
 {
-    public class GamesModel
+    public class Games
     {
-        public string GameID { get; set; }
+        public int GameID { get; set; }
         public string GameName { get; set; }
         public string GameDescription { get; set; }
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         public string GameImageUrl { get; set; }
         public string GameImageThumbnailUrl { get; set; }
         public string IsFeaturedGame { get; set; }
