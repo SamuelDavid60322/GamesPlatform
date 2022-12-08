@@ -22,7 +22,7 @@ namespace GamesPlatform
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
             builder.Services.AddTransient<IGamesRepository, MockGamesRepository>();
-            builder.Services.AddTransient<ICategoryRepository, ICategoryRepository>();
+            builder.Services.AddTransient<ICategoryRepository, MockCategoryRepository>();
 
             var app = builder.Build();
 

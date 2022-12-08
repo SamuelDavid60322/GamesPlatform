@@ -12,6 +12,7 @@ namespace GamesPlatform.Mocks
             new Games{
                 GameID=1, 
                 GameName="Kick Ups", 
+                Category = _categoryRepository.Categories.First(),
                 GameDescription= "The goal is simple, keep the ball in the air for the longest amount of time...",
                 Price=20.00M,
                 GameImageUrl ="https://i2-prod.manchestereveningnews.co.uk/sport/football/article24985459.ece/ALTERNATES/s615/0_GettyImages-1413133364.jpg",
@@ -22,6 +23,7 @@ namespace GamesPlatform.Mocks
 
             new Games{GameID=2,                
                 GameName="Amoeba Online",
+                Category = _categoryRepository.Categories.First(),
                 GameDescription= "Jump into the ultimate Single cell battle! Compete aganist 100 players or bots in this multiplayer game!",
                 Price=10.00M,
                 GameImageUrl ="https://i2-prod.manchestereveningnews.co.uk/sport/football/article24985459.ece/ALTERNATES/s615/0_GettyImages-1413133364.jpg",
@@ -31,6 +33,7 @@ namespace GamesPlatform.Mocks
 
             new Games{GameID=3,                
                 GameName="Reaction Test Game",
+                Category = _categoryRepository.Categories.First(),
                 GameDescription= "Test your reaction time and compare with others",
                 Price=50.00M,
                 GameImageUrl ="https://i2-prod.manchestereveningnews.co.uk/sport/football/article24985459.ece/ALTERNATES/s615/0_GettyImages-1413133364.jpg",
@@ -40,6 +43,7 @@ namespace GamesPlatform.Mocks
 
             new Games{GameID=4,
                 GameName="Dungeon Deathmatch",
+                Category = _categoryRepository.Categories.First(),
                 GameDescription= "Dunegon Deathmatch is a fast paced top down multiplayer deathmatch game. Fight up to 8 players in this action game!",
                 Price=20.00M,
                 GameImageUrl ="https://i2-prod.manchestereveningnews.co.uk/sport/football/article24985459.ece/ALTERNATES/s615/0_GettyImages-1413133364.jpg",
