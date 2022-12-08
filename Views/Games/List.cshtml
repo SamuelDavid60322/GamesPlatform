@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Game>
+@{
+    ViewData["Title"] = "List of avaliable games";
+}
+
+@{
+    foreach (var game in Model)
+    {
+        <div>
+            <h4>Game Name : @game.GameName</h4>
+            <p>Price: @game.Price.ToString("c")</p>
+        </div>
+    }
+}

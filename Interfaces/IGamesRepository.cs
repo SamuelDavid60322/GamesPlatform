@@ -4,8 +4,8 @@ namespace GamesPlatform.Interfaces
 {
     public interface IGamesRepository
     {
-        IEnumerable<Games> Games { get; set;}
-        IEnumerable<Games> FeaturedGames { get;}
-        Games GetGamesById (int GamesId);
+        IEnumerable<Game> Games { get;}
+        IEnumerable<Game> FeaturedGames { get;}
+        Game GetGamesById (int GamesId);
     }
 }
