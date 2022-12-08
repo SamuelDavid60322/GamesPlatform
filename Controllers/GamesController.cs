@@ -1,4 +1,5 @@
 ﻿using GamesPlatform.Interfaces;
+using GamesPlatform.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamesPlatform.Controllers
@@ -18,7 +19,11 @@ namespace GamesPlatform.Controllers
         public ViewResult List() 
         {
             var games = _gamesRepository.Games;
-            return View(games);
+            GameListViewModel vm = new GameListViewModel();
+            vm.Games = _gamesRepository.Games;
+            vm.CurrentCategory = "Games Category";
+
+            return View(vm);
         }
     }
 }

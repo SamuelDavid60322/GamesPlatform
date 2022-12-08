@@ -1,10 +1,13 @@
-﻿@model IEnumerable<Game>
+﻿@using GamesPlatform.ViewModels
+@model GameListViewModel
 @{
     ViewData["Title"] = "List of avaliable games";
 }
 
+<h1>@Model.CurrentCategory</h1>
+
 @{
-    foreach (var game in Model)
+    foreach (var game in Model.Games)
     {
         <div>
             <h4>Game Name : @game.GameName</h4>
