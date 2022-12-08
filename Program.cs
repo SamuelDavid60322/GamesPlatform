@@ -1,6 +1,7 @@
 using GamesPlatform.Data;
 using GamesPlatform.Interfaces;
 using GamesPlatform.Mocks;
+using GamesPlatform.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,8 +22,8 @@ namespace GamesPlatform
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
-            builder.Services.AddTransient<IGamesRepository, MockGamesRepository>();
-            builder.Services.AddTransient<ICategoryRepository, MockCategoryRepository>();
+            builder.Services.AddTransient<IGamesRepository, GameRepository>();
+            builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
 
             var app = builder.Build();
 
