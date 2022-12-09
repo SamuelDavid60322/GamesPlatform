@@ -1,5 +1,5 @@
 # GamesPlatform
-All Work related to the Games Platform
+Gamesino is an online platform where users can bu and play their favourite games! Gamesino also offers the service for verifed users to gamble using their money which will make the difference in paying for the latest title or getting it for free!
 
 Technologies used for project creation
 ---------------------------------------
