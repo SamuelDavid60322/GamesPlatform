@@ -1,4 +1,6 @@
-﻿using GamesPlatform.Models;
+﻿using GamesPlatform.Interfaces;
+using GamesPlatform.Models;
+using GamesPlatform.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,15 +9,20 @@ namespace GamesPlatform.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IGamesRepository _gamesRepository;
+        
+        public HomeController(IGamesRepository gamesRepository)
         {
-            _logger = logger;
+            _gamesRepository = gamesRepository;
         }
 
-        public IActionResult Index()
+        public ViewResult Index()
         {
-            return View();
+            var homeViewModel = new HomeViewModel
+            {
+                FeaturedGames = _gamesRepository.FeaturedGames
+            };
+            return View(homeViewModel);
         }
 
         public IActionResult Privacy()

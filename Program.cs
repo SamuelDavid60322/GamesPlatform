@@ -1,6 +1,7 @@
 using GamesPlatform.Data;
 using GamesPlatform.Interfaces;
 using GamesPlatform.Mocks;
+using GamesPlatform.Models;
 using GamesPlatform.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +24,12 @@ namespace GamesPlatform
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
             builder.Services.AddTransient<IGamesRepository, GameRepository>();
+            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            builder.Services.AddScoped(sp => ShoppingCart.GetCart(sp));
             builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
+            builder.Services.AddMvc();
+            builder.Services.AddMemoryCache();
+            builder.Services.AddSession();
 
             var app = builder.Build();
 
@@ -41,6 +47,7 @@ namespace GamesPlatform
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseRouting();
 
