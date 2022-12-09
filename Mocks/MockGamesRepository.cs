@@ -17,7 +17,7 @@ namespace GamesPlatform.Mocks
                     Price=20.00M,
                     GameImageUrl ="https://i2-prod.manchestereveningnews.co.uk/sport/football/article24985459.ece/ALTERNATES/s615/0_GettyImages-1413133364.jpg",
                     GameImageThumbnailUrl = "https://i2-prod.manchestereveningnews.co.uk/sport/football/article24985459.ece/ALTERNATES/s615/0_GettyImages-1413133364.jpg",
-                    IsFeaturedGame = "true"
+                    IsFeaturedGame = true
                 },
 
 
@@ -29,7 +29,7 @@ namespace GamesPlatform.Mocks
                     Price=10.00M,
                     GameImageUrl ="https://i2-prod.manchestereveningnews.co.uk/sport/football/article24985459.ece/ALTERNATES/s615/0_GettyImages-1413133364.jpg",
                     GameImageThumbnailUrl = "https://i2-prod.manchestereveningnews.co.uk/sport/football/article24985459.ece/ALTERNATES/s615/0_GettyImages-1413133364.jpg",
-                    IsFeaturedGame = "true"
+                    IsFeaturedGame = true
                 },
 
                 new Game{
@@ -40,7 +40,7 @@ namespace GamesPlatform.Mocks
                     Price=50.00M,
                     GameImageUrl ="https://i2-prod.manchestereveningnews.co.uk/sport/football/article24985459.ece/ALTERNATES/s615/0_GettyImages-1413133364.jpg",
                     GameImageThumbnailUrl = "https://i2-prod.manchestereveningnews.co.uk/sport/football/article24985459.ece/ALTERNATES/s615/0_GettyImages-1413133364.jpg",
-                    IsFeaturedGame = "true"
+                    IsFeaturedGame = true
                 },
 
                 new Game{
@@ -51,7 +51,7 @@ namespace GamesPlatform.Mocks
                     Price=20.00M,
                     GameImageUrl ="https://i2-prod.manchestereveningnews.co.uk/sport/football/article24985459.ece/ALTERNATES/s615/0_GettyImages-1413133364.jpg",
                     GameImageThumbnailUrl = "https://i2-prod.manchestereveningnews.co.uk/sport/football/article24985459.ece/ALTERNATES/s615/0_GettyImages-1413133364.jpg",
-                    IsFeaturedGame = "false"
+                    IsFeaturedGame = false
                 },
 
                 new Game{
@@ -61,7 +61,7 @@ namespace GamesPlatform.Mocks
                     Price=20.00M,
                     GameImageUrl ="https://i2-prod.manchestereveningnews.co.uk/sport/football/article24985459.ece/ALTERNATES/s615/0_GettyImages-1413133364.jpg",
                     GameImageThumbnailUrl = "https://i2-prod.manchestereveningnews.co.uk/sport/football/article24985459.ece/ALTERNATES/s615/0_GettyImages-1413133364.jpg",
-                    IsFeaturedGame = "false"
+                    IsFeaturedGame = false
                 },
             };
   

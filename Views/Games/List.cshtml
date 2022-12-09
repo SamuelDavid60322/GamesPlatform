@@ -7,11 +7,8 @@
 <h1>@Model.CurrentCategory</h1>
 
 @{
-    foreach (var game in Model.Games)
+    foreach (Game game in Model.Games)
     {
-        <div>
-            <h4>Game Name : @game.GameName</h4>
-            <p>Price: @game.Price.ToString("c")</p>
-        </div>
+        @Html.Partial("GameCard", game)
     }
 }
