@@ -6,9 +6,9 @@
     <h5 class="card-title">@Model.GameName</h5>
     <p class="card-text">@Model.GameDescription</p>
     <p class="card-text">€@Model.Price</p>
-    <div class="addToCart text-right">
+    <div class="addToCart text-right text-white">
             <p class="btn btn-success">
-            <a class=btn btn-success" id= "cartButton"
+            <a class="btn btn-success text-white" id= "cartButton"
             asp-controller="ShoppingCart"
             asp-action="AddToShoppingCart"
             asp-route-gameID="@Model.GameID">
