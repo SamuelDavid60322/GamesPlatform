@@ -4,20 +4,20 @@
 <table class="table table-bordered table-striped text-white">
     <thead class="text-white">
         <tr class="text-white">
-            <th class="text-white">Selected Amount</th>
-            <th class="text-white>Game</th>
-            <th class="text-right">Price</th>
-            <th class="text-right">Sub Total</th>
+            <th class="text-white">Quantity</th>
+            <th class="text-white">Game</th>
+            <th class="text-right text-white">Price</th>
+            <th class="text-right text-white">Sub Total</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.ShoppingCart.ShoppingCartItems)
         {
-            <tr>
-                <td class="text-center">@item.Amount</td>
-                <td class="text-left">@item.Game.GameName</td>
-                <td class="text-right">@item.Game.Price.ToString("c")</td>
-                <td class="text-right">
+            <tr class="text-white">
+                <td class="text-center text-white">@item.Amount</td>
+                <td class="text-left text-white">@item.Game.GameName</td>
+                <td class="text-right text-white">@item.Game.Price.ToString("c")</td>
+                <td class="text-right text-white">
                     @((item.Amount * item.Game.Price).ToString("c"))
                 </td>
             </tr>
@@ -25,8 +25,8 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="3" class="text-right">Total</td>
-            <td class="text-right">@Model.ShoppingCartTotal.ToString("c")</td>
+            <td colspan="3" class="text-right text-white">Total</td>
+            <td class="text-right text-white">@Model.ShoppingCartTotal.ToString("c")</td>
         </tr>
     </tfoot>
 </table>  
