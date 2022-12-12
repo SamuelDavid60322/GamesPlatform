@@ -6,6 +6,15 @@
     <h5 class="card-title">@Model.GameName</h5>
     <p class="card-text">@Model.GameDescription</p>
     <p class="card-text">€@Model.Price</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="addToCart text-right">
+            <p class="btn btn-success">
+            <a class=btn btn-success" id= "cartButton"
+            asp-controller="ShoppingCart"
+            asp-action="AddToShoppingCart"
+            asp-route-gameID="@Model.GameID">
+            Add To Cart
+            </a>
+        </p>
+    </div>
   </div>
 </div>

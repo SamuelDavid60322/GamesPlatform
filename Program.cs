@@ -27,6 +27,7 @@ namespace GamesPlatform
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             builder.Services.AddScoped(sp => ShoppingCart.GetCart(sp));
             builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
+            builder.Services.AddTransient<IOrderRepository, OrderRepository>();
             builder.Services.AddMvc();
             builder.Services.AddMemoryCache();
             builder.Services.AddSession();
