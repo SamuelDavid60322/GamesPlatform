@@ -19,5 +19,31 @@ namespace GamesPlatform.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Checkout(Order order)
+        {
+            var items = _shoppingCart.GetShoppingCartItems();
+            _shoppingCart.ShoppingCartItems = items;
+
+            if(_shoppingCart.ShoppingCartItems.Count ==0)
+            {
+                ModelState.AddModelError("", "Cart is Empty");
+            }
+
+            if(ModelState.IsValid)
+            {
+                _orderRepository.CreateOrder(order);
+                _shoppingCart.ClearCart();
+                return RedirectToAction("CheckoutComplete");
+            }
+            return View(order);
+        }
+
+        public IActionResult CheckoutComplete()
+        {
+            ViewBag.CheckoutCompleteMessage = "Thank you for your order with Gamesino, Come back again!";
+            return View();
+        }
     }
 }
