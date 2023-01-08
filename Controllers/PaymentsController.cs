@@ -44,8 +44,8 @@ namespace GamesPlatform.Controllers
           },
         },
                 Mode = "payment",
-                SuccessUrl = "http://localhost:7290/Payments/Success",
-                CancelUrl = "http://localhost:7290/Payments/Cancel",
+                SuccessUrl = "https://localhost:7290/Payments/Success",
+                CancelUrl = "https://localhost:7290/Payments/Cancel",
             };
 
             var service = new SessionService();
