@@ -18,12 +18,19 @@ html {
 }
 
 body {
-    background: rgb(2,0,36);
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(6,5,103,1) 23%, rgba(8,8,138,1) 33%, rgba(8,8,131,1) 67%, rgba(8,8,132,1) 77%, rgba(1,11,13,1) 100%);
+    background: hsl(218, 41%, 15%);
+    background-image: radial-gradient(650px circle at 0% 0%, hsl(218, 41%, 35%) 15%, 
+    hsl(218, 41%, 30%) 35%, 
+    hsl(218, 41%, 20%) 75%, 
+    hsl(218, 41%, 19%) 80%, transparent 100%), 
+    radial-gradient(1250px circle at 100% 100%, 
+    hsl(218, 41%, 45%) 15%, hsl(218, 41%, 30%) 35%, 
+    hsl(218, 41%, 20%) 75%, 
+    hsl(218, 41%, 19%) 80%, transparent 100%);
+    margin-bottom: 60px;
 }
 
 .bg-glass {
     background-color: hsla(0, 0%, 100%, 0.9) !important;
-    backdrop-filter:  blur(50px);
+    backdrop-filter: blur(50px);
 }

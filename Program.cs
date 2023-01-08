@@ -5,6 +5,7 @@ using GamesPlatform.Models;
 using GamesPlatform.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Stripe;
 
 namespace GamesPlatform
 {
@@ -29,9 +30,9 @@ namespace GamesPlatform
             builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
             builder.Services.AddTransient<IOrderRepository, OrderRepository>();
             builder.Services.AddMvc();
+
             builder.Services.AddMemoryCache();
             builder.Services.AddSession();
-
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -45,15 +46,12 @@ namespace GamesPlatform
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSession();
-
             app.UseRouting();
-
             app.UseAuthorization();
-
+            StripeConfiguration.ApiKey = "sk_test_51MLfkELqDZptVo03ItEDQzIaHydvHEVvyIw7SV0Z0GmzqsDWyxV3lEWLkHzfnr4nrnxxInRobfod8LpmiLdlBqSw00oEP5ziP9";
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");

@@ -7,13 +7,13 @@
         @foreach (var category in Model)
         {
             <li>
-                <a asp-controller="GamesController" asp-action="List"
+                <a asp-controller="Game" asp-action="List"
                asp-route-category="@category.CategoryName">@category.CategoryName</a>
             </li>
         }
         <li class="divider"></li>
         <li>
-            <a asp-controller="GamesController" asp-action="List" asp-route-category="">View all drinks</a>
+            <a asp-controller="Game" asp-action="List" asp-route-category="">View all games</a>
         </li>
     </ul>
 </li>
