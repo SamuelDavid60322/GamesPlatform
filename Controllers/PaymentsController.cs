@@ -44,8 +44,8 @@ namespace GamesPlatform.Controllers
           },
         },
                 Mode = "payment",
-                SuccessUrl = "http://localhost:7290/Payments/Success.cshtml",
-                CancelUrl = "http://localhost:7290/cancel",
+                SuccessUrl = "http://localhost:7290/Payments/Success",
+                CancelUrl = "http://localhost:7290/Payments/Cancel",
             };
 
             var service = new SessionService();
@@ -56,6 +56,11 @@ namespace GamesPlatform.Controllers
         }
 
         public IActionResult Success()
+        {
+            return View();
+        }
+
+        public IActionResult Cancel()
         {
             return View();
         }
