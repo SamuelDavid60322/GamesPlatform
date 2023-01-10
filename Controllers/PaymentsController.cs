@@ -1,6 +1,7 @@
 ﻿using GamesPlatform.Interfaces;
 using GamesPlatform.Models;
 using GamesPlatform.Repositories;
+using GamesPlatform.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Stripe;
 using Stripe.Checkout;
@@ -67,7 +68,14 @@ namespace GamesPlatform.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            _shoppingCart.ShoppingCartItems = _shoppingCart.GetShoppingCartItems();
+            var orderSummaryViewModel = new OrderSummaryViewModel
+            {
+                ShoppingCart = _shoppingCart,
+                ShoppingCartTotal = _shoppingCart.GetShoppingCartTotal(),
+            };
+
+            return View(orderSummaryViewModel);
         }
     }
 }

@@ -1,5 +1,42 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model OrderSummaryViewModel
+
 @{
+    ViewData["Title"] = "Order Summary";
 }
+<h1 class="text-white">Order Summary</h1>
+
+<table class="table table-bordered table-striped bg-dark text-white" style="border-radius: 1rem;">
+    <thead>
+        <tr>
+            <th class="text-white">Selected Amount</th>
+            <th class="text-white">Game</th>
+            <th class="text-right text-white">Price</th>
+            <th class="text-right text-white">Sub Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ShoppingCart.ShoppingCartItems)
+        {
+                <tr>
+                <td class="text-left text-white">@item.Game.GameName</td>
+                <td class="text-right text-white">€@item.Game.Price</td>
+                <td class="text-center text-white">@item.Amount</td>
+                <td class="text-right text-white">
+                        €@((item.Amount * item.Game.Price).ToString("F"))
+                    </td>
+                </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right text-white">Total</td>
+            <td class="text-right text-white">€@((Model.ShoppingCartTotal).ToString("F"))</td>
+        </tr>
+    </tfoot>
+</table>
+
+<div class="text-center text-white">
+    <form action="/create-checkout-session" method="POST">
+        <button class="btn btn-primary" type="submit">Proceed to Payment</button>
+    </form>
+</div>
