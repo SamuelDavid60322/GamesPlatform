@@ -6,6 +6,7 @@ namespace GamesPlatform.Interfaces
     {
         IEnumerable<Game> Games { get;}
         IEnumerable<Game> FeaturedGames { get;}
+        IEnumerable<Game> FreeGames { get; }
         Game GetGamesById (int GamesId);
     }
 }

@@ -36,6 +36,7 @@ namespace GamesPlatform.Data.Migrations
                     GameImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     GameImageThumbnailUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsFeaturedGame = table.Column<bool>(type: "bit", nullable: false),
+                    IsFreeGame = table.Column<bool>(type: "bit", nullable: false),
                     CategoryID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

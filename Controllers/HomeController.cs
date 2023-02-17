@@ -20,7 +20,8 @@ namespace GamesPlatform.Controllers
         {
             var homeViewModel = new HomeViewModel
             {
-                FeaturedGames = _gamesRepository.FeaturedGames
+                FeaturedGames = _gamesRepository.FeaturedGames,
+                FreeGames = _gamesRepository.FreeGames
             };
             return View(homeViewModel);
         }

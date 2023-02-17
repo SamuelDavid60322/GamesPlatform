@@ -63,9 +63,31 @@ namespace GamesPlatform.Mocks
                     GameImageThumbnailUrl = "https://i2-prod.manchestereveningnews.co.uk/sport/football/article24985459.ece/ALTERNATES/s615/0_GettyImages-1413133364.jpg",
                     IsFeaturedGame = false
                 },
+                new Game{
+                    GameID=6,
+                    GameName="Tower Of Hanoi",
+                    GameDescription= "Objective of the pizzle is to move the entire stack to another rod one at a time.",
+                    Price=0.00M,
+                    GameImageUrl ="https://i2-prod.manchestereveningnews.co.uk/sport/football/article24985459.ece/ALTERNATES/s615/0_GettyImages-1413133364.jpg",
+                    GameImageThumbnailUrl = "https://i2-prod.manchestereveningnews.co.uk/sport/football/article24985459.ece/ALTERNATES/s615/0_GettyImages-1413133364.jpg",
+                    IsFeaturedGame = false,
+                    IsFreeGame=true
+                },
+
+                new Game{
+                    GameID=7,
+                    GameName="High or Low",
+                    GameDescription= "",
+                    Price=0.00M,
+                    GameImageUrl ="https://i2-prod.manchestereveningnews.co.uk/sport/football/article24985459.ece/ALTERNATES/s615/0_GettyImages-1413133364.jpg",
+                    GameImageThumbnailUrl = "https://i2-prod.manchestereveningnews.co.uk/sport/football/article24985459.ece/ALTERNATES/s615/0_GettyImages-1413133364.jpg",
+                    IsFeaturedGame = false,
+                    IsFreeGame=true
+                },
             };
   
         public IEnumerable<Game> FeaturedGames { get; }
+        public IEnumerable<Game> FreeGames { get; }
 
         public Game GetGamesById(int GameId)
         {

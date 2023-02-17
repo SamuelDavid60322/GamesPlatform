@@ -43,5 +43,10 @@ namespace GamesPlatform.Controllers
             });
         }
 
+        public IActionResult hol()
+        {
+            return View();
+        }
+
     }
 }

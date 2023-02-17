@@ -12,6 +12,7 @@ namespace GamesPlatform.Models
         public string GameImageUrl { get; set; }
         public string GameImageThumbnailUrl { get; set; }
         public bool IsFeaturedGame { get; set; }
+        public bool IsFreeGame { get; set; }
         public int CategoryID { get; set; }
         public Category Category { get; set; }
 
