@@ -1,6 +1,7 @@
 ﻿using GamesPlatform.Interfaces;
 using GamesPlatform.Models;
 using GamesPlatform.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamesPlatform.Controllers
@@ -14,7 +15,7 @@ namespace GamesPlatform.Controllers
             _gamesRepository= gamesRepository;
             _shoppingCart= shoppingCart;
         }
-        
+        [Authorize]
         public ViewResult Index()
         {
             var items= _shoppingCart.GetShoppingCartItems();
@@ -27,6 +28,7 @@ namespace GamesPlatform.Controllers
             };
             return View(sCVM);
         }
+        [Authorize]
         public RedirectToActionResult AddToShoppingCart(int gameID)
         {
             var selectedGame = _gamesRepository.Games.FirstOrDefault(p => p.GameID == gameID);
@@ -36,6 +38,7 @@ namespace GamesPlatform.Controllers
             }
             return RedirectToAction("Index");
         }
+        [Authorize]
         public RedirectToActionResult RemoveFromShoppingCart(int gameID)
         {
             var selectedGame = _gamesRepository.Games.FirstOrDefault(p => p.GameID == gameID);

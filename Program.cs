@@ -55,6 +55,9 @@ namespace GamesPlatform
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+            app.MapControllerRoute(
+                name: "gameDetails",
+                pattern: "{controller=Games}/{action=Details}/{id?}");
             app.MapRazorPages();
 
             app.Run();

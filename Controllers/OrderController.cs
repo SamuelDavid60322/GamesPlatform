@@ -1,5 +1,6 @@
 ﻿using GamesPlatform.Interfaces;
 using GamesPlatform.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamesPlatform.Controllers
@@ -21,6 +22,7 @@ namespace GamesPlatform.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Checkout(Order order)
         {
             var items = _shoppingCart.GetShoppingCartItems();
@@ -35,7 +37,7 @@ namespace GamesPlatform.Controllers
             {
                 _orderRepository.CreateOrder(order);
                 _shoppingCart.ClearCart();
-                return RedirectToAction("CheckoutComplete");
+                return RedirectToAction("Index", "Payment");
             }
             return View(order);
         }

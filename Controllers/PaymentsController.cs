@@ -20,7 +20,7 @@ namespace GamesPlatform.Controllers
         }
 
         [HttpPost("create-checkout-session")]
-        public ActionResult CreateCheckoutSession()
+        public IActionResult CreateCheckoutSession()
         {
              decimal orderTotal;
             _shoppingCart.ShoppingCartItems = _shoppingCart.GetShoppingCartItems();
@@ -34,7 +34,7 @@ namespace GamesPlatform.Controllers
           {
             PriceData = new SessionLineItemPriceDataOptions
             {
-              UnitAmount = 2000,
+              UnitAmount = (long?)orderTotal,
               Currency = "eur",
               ProductData = new SessionLineItemPriceDataProductDataOptions
               {

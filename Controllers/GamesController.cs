@@ -43,6 +43,36 @@ namespace GamesPlatform.Controllers
             });
         }
 
+
+        public ViewResult Search(string searchString)
+        {
+            string _searchString = searchString;
+            IEnumerable<Game> games;
+            string currentCategory = string.Empty;
+
+            if (string.IsNullOrEmpty(_searchString))
+            {
+                games = _gamesRepository.Games.OrderBy(p => p.GameID);
+            }
+            else
+            {
+                games = _gamesRepository.Games.Where(p => p.GameName.Contains(_searchString));
+            }
+
+            return View("~/Views/Games/List.cshtml", new GameListViewModel { Games = games, CurrentCategory = "All Games" });
+        }
+
+        public ViewResult Details(int gameId)
+        {
+            var game = _gamesRepository.GetGamesById(gameId);
+            if (game == null)
+            {
+                return View("~/Views/Error/Error.cshtml");
+            }
+            return View(game);
+        }
+
+
         public IActionResult hol()
         {
             return View();

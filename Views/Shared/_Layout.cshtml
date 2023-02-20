@@ -40,6 +40,11 @@
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
+                <form class="navbar-form navbar-right" asp-controller="Games" asp-action="Search" method="get">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search for a Game" name="searchString" value="@ViewData["searchString"]">
+                    </div>
+                </form>
             </div>
         </nav>
     </header>

@@ -1,0 +1,27 @@
+﻿@model Game
+
+<div class="card col-sm-4 col-lg-4 col-md-4">
+  <img class="card-img-top" src="@Model.GameImageThumbnailUrl" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">@Model.GameName</h5>
+    <p class="card-text">@Model.GameDescription</p>
+    <p class="card-text">€@Model.Price</p>
+    @if (Model.CategoryID >=4){
+      <div class="startCasinoGame">
+       <a class="btn btn-success mt-auto start-game" asp-controller="Games" asp-action="hol" asp-route-gameId="@Model.GameID">Start Game</a>
+            </div>
+        } else
+        {
+            <div class="addToCart text-right text-white">
+             <p class="btn btn-success">
+             <a class="btn btn-success text-white" id= "cartButton"
+             asp-controller="ShoppingCart"
+             asp-action="AddToShoppingCart"
+              asp-route-gameID="@Model.GameID">
+              Add To Cart
+             </a>
+            </p>        
+        </div>
+        }
+  </div>
+</div>on
