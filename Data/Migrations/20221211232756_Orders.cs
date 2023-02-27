@@ -15,7 +15,7 @@ namespace GamesPlatform.Data.Migrations
                 name: "Orders",
                 columns: table => new
                 {
-                    OrderId = table.Column<int>(type: "int", nullable: false)
+                    OrderID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -31,7 +31,7 @@ namespace GamesPlatform.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Orders", x => x.OrderId);
+                    table.PrimaryKey("PK_Orders", x => x.OrderID);
                 });
 
             migrationBuilder.CreateTable(
@@ -58,7 +58,7 @@ namespace GamesPlatform.Data.Migrations
                         name: "FK_OrderDetails_Orders_OrderID",
                         column: x => x.OrderID,
                         principalTable: "Orders",
-                        principalColumn: "OrderId",
+                        principalColumn: "OrderID",
                         onDelete: ReferentialAction.Cascade);
                 });
 

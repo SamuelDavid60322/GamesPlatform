@@ -2,6 +2,8 @@
 using GamesPlatform.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics.Metrics;
+using System.Reflection.Emit;
 
 namespace GamesPlatform.Controllers
 {
@@ -35,7 +37,19 @@ namespace GamesPlatform.Controllers
 
             if(ModelState.IsValid)
             {
-                _orderRepository.CreateOrder(order);
+                
+                string firstName = "";
+                string lastName = "";
+                string addressLine1 = "";
+                string addressLine2 = "";
+                string zipCode = "";
+                string city = "";
+                string country = "";
+                string phoneNumber = "";
+                string email = "";
+                int orderId = 0;
+
+                _orderRepository.CreateOrder(items, firstName, lastName, addressLine1, addressLine2, zipCode, city, country, phoneNumber, email);
                 _shoppingCart.ClearCart();
                 return RedirectToAction("Index", "Payment");
             }
@@ -44,8 +58,16 @@ namespace GamesPlatform.Controllers
 
         public IActionResult CheckoutComplete()
         {
-            ViewBag.CheckoutCompleteMessage = "Thank you for your order with Gamesino, Come back again!";
-            return View();
+            var items = _shoppingCart.GetShoppingCartItems();
+            return View("~/Views/Payment/Success");
+        }
+
+        public IActionResult Index()
+        {
+            string firstName = "";
+            var orders = _orderRepository.GetOrdersByFirstName(firstName);
+            return View(orders);
+
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using GamesPlatform.Data;
 using GamesPlatform.Interfaces;
 using GamesPlatform.Models;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Bson;
-
 namespace GamesPlatform.Repositories
 {
     public class OrderRepository : IOrderRepository
@@ -15,10 +15,28 @@ namespace GamesPlatform.Repositories
             _applicationDbContext = applicationDbContext;
             _shoppingCart = shoppingCart;
         }
-        public void CreateOrder(Order order)
+
+        public void CreateOrder(List<ShoppingCartItem> items, string firstName, string lastName, string addressLine1, string addressLine2, string zipCode, string city, string country, string phoneNumber, string email)
         {
-            order.OrderPlaced = DateTime.Now;
+            //order.OrderPlaced = DateTime.Now;
+            //_applicationDbContext.Orders.Add(order);
+
+            var order = new Order()
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                AddressLine1 = addressLine1,
+                AddressLine2 = addressLine2,
+                ZipCode = zipCode,
+                City = city,
+                Country = country,
+                PhoneNumber = phoneNumber,
+                Email = email
+                
+                
+            };
             _applicationDbContext.Orders.Add(order);
+            _applicationDbContext.SaveChanges();
 
             var shoppingCartItems = _shoppingCart.ShoppingCartItems;
 
@@ -26,14 +44,23 @@ namespace GamesPlatform.Repositories
             {
                 var orderDetail = new OrderDetail()
                 {
+
                     Amount = item.Amount,
                     GameID = item.Game.GameID,
-                    OrderID = order.OrderId,
-                    Price = item.Game.Price
+                    OrderID = order.OrderID,
+                    Price = item.Game.Price,
+                    
                 };
                 _applicationDbContext.OrderDetails.Add(orderDetail);
             }
             _applicationDbContext.SaveChanges();
         }
+
+        public List<Order> GetOrdersByFirstName(string firstName)
+        {
+            var orders = _applicationDbContext.Orders.Include(n => n.OrderDetails).ThenInclude(n => n.Game).Where(n => n.FirstName == firstName).ToList();
+            return orders;
+        }
+
     }
 }

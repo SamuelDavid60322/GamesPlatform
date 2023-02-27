@@ -2,9 +2,12 @@
 using GamesPlatform.Models;
 using GamesPlatform.Repositories;
 using GamesPlatform.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Stripe;
 using Stripe.Checkout;
+using System.Diagnostics.Metrics;
+using System.Reflection.Emit;
 
 namespace GamesPlatform.Controllers
 {
@@ -56,8 +59,23 @@ namespace GamesPlatform.Controllers
             return new StatusCodeResult(303);
         }
 
+        [Authorize]
         public IActionResult Success()
         {
+            var items = _shoppingCart.GetShoppingCartItems();
+            string firstName = "";
+            string lastName = "";
+            string addressLine1 = "";
+            string addressLine2 = "";
+            string zipCode = "";
+            string city = "";
+            string country = "";
+            string phoneNumber = "";
+            string email = "";
+            int orderId = 0;
+
+            _orderRepository.CreateOrder(items, firstName, lastName, addressLine1, addressLine2, zipCode, city, country, phoneNumber, email);
+
             return View();
         }
 

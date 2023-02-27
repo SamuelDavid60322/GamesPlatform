@@ -8,7 +8,7 @@ namespace GamesPlatform.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        
         private readonly IGamesRepository _gamesRepository;
         
         public HomeController(IGamesRepository gamesRepository)
