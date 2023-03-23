@@ -2,7 +2,6 @@
 @{
     ViewData["Title"] = "My GameLibrary";
 }
-<h2 class="text-white">These are games that you currently own</h2>
 
 @if (Model.PurchasedGames.Count > 0)
 {
@@ -15,5 +14,5 @@
     
 }
 else {
-    <h2 class="text-white">You have no games in your library.</h2>
+    <h2 class="text-white">You currently have no games in your library. Grab your first game from the store</h2>
 }
