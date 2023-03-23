@@ -13,7 +13,7 @@
         <table class="table text-white">
             <thead>
                 <tr>
-                    <th>First Name</th>
+                    <th>Order ID</th>
                     <th>Items</th>
                     <th>Total</th>
                     <th>User</th>    
@@ -23,7 +23,7 @@
                 @foreach (var order in Model)
                 {
                     <tr>
-                        <td class="align-middle">@order.FirstName</td>
+                        <td class="align-middle">@order.OrderID</td>
                         <td class="align-middle">
                             <ul style="list-style-type:none">
                                 @foreach (var item in order.OrderDetails)
@@ -39,7 +39,7 @@
                         <td class="align-middle">
                             @order.OrderDetails.Select(m => m.Game.Price * m.Amount).Sum().ToString("c")
                         </td>
-                        <td class="align-middle"> - </td>
+                        <td class="align-middle"> @order.UserID </td>
                     </tr>
                 }
             </tbody>

@@ -7,6 +7,7 @@ namespace GamesPlatform.Models
     public class Order
     {
         public int OrderID { get; set; }
+        public string UserID { get; set; }
 
         [Display(Name = "FirstName")]
         [StringLength(50)]

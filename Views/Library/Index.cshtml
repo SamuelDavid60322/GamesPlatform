@@ -1,1 +1,19 @@
-﻿<h1 class="text-white"> There doesn't seem any games purchased yet. Check some out at the store.</h1>
+﻿@model LibraryViewModel
+@{
+    ViewData["Title"] = "My GameLibrary";
+}
+<h2 class="text-white">These are games that you currently own</h2>
+
+@if (Model.PurchasedGames.Count > 0)
+{
+    <div class="row">
+        @foreach (var game in Model.PurchasedGames)
+        {
+            @Html.Partial("GameCard", game)
+        }
+    </div>
+    
+}
+else {
+    <h2 class="text-white">You have no games in your library.</h2>
+}

@@ -4,13 +4,17 @@ using GamesPlatform.Repositories;
 using GamesPlatform.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PayPal.Api;
 using Stripe;
 using Stripe.Checkout;
+using System.ComponentModel;
 using System.Diagnostics.Metrics;
 using System.Reflection.Emit;
+using System.Security.Claims;
 
 namespace GamesPlatform.Controllers
 {
+    [Authorize]
     public class PaymentsController : Controller
     {
         private readonly ShoppingCart _shoppingCart;
@@ -19,6 +23,8 @@ namespace GamesPlatform.Controllers
         {
             _orderRepository = orderRepository;
             _shoppingCart = shoppingCart;
+ 
+
             StripeConfiguration.ApiKey = "sk_test_51MLfkELqDZptVo03ItEDQzIaHydvHEVvyIw7SV0Z0GmzqsDWyxV3lEWLkHzfnr4nrnxxInRobfod8LpmiLdlBqSw00oEP5ziP9";
         }
 
@@ -48,7 +54,7 @@ namespace GamesPlatform.Controllers
           },
         },
                 Mode = "payment",
-                SuccessUrl = "https://localhost:7290/Payments/Success",
+                SuccessUrl = "https://localhost:7290/Payments/Success?session_id={CHECKOUT_SESSION_ID}",
                 CancelUrl = "https://localhost:7290/Payments/Cancel",
             };
 
@@ -63,6 +69,7 @@ namespace GamesPlatform.Controllers
         public IActionResult Success()
         {
             var items = _shoppingCart.GetShoppingCartItems();
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             string firstName = "";
             string lastName = "";
             string addressLine1 = "";
@@ -74,7 +81,9 @@ namespace GamesPlatform.Controllers
             string email = "";
             int orderId = 0;
 
-            _orderRepository.CreateOrder(items, firstName, lastName, addressLine1, addressLine2, zipCode, city, country, phoneNumber, email);
+            string sessionId = HttpContext.Request.Query["session_id"];
+            
+            _orderRepository.CreateOrder(items, userId, firstName, lastName, addressLine1, addressLine2, zipCode, city, country, phoneNumber, email);
 
             return View();
         }

@@ -4,6 +4,7 @@ using GamesPlatform.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GamesPlatform.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230323122209_purchases_GameID_added")]
+    partial class purchasesGameIDadded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -181,6 +184,35 @@ namespace GamesPlatform.Data.Migrations
                     b.HasIndex("OrderID");
 
                     b.ToTable("OrderDetails");
+                });
+
+            modelBuilder.Entity("GamesPlatform.Models.Purchase", b =>
+                {
+                    b.Property<int>("PurchaseID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PurchaseID"));
+
+                    b.Property<int>("GameID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderDetailID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PurchaseKey")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PurchaseID");
+
+                    b.HasIndex("GameID");
+
+                    b.ToTable("Purchases");
                 });
 
             modelBuilder.Entity("GamesPlatform.Models.ShoppingCartItem", b =>
@@ -438,6 +470,17 @@ namespace GamesPlatform.Data.Migrations
                     b.Navigation("Game");
 
                     b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("GamesPlatform.Models.Purchase", b =>
+                {
+                    b.HasOne("GamesPlatform.Models.Game", "Game")
+                        .WithMany()
+                        .HasForeignKey("GameID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Game");
                 });
 
             modelBuilder.Entity("GamesPlatform.Models.ShoppingCartItem", b =>

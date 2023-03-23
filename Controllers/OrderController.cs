@@ -1,9 +1,11 @@
 ﻿using GamesPlatform.Interfaces;
 using GamesPlatform.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics.Metrics;
 using System.Reflection.Emit;
+using System.Security.Claims;
 
 namespace GamesPlatform.Controllers
 {
@@ -11,11 +13,14 @@ namespace GamesPlatform.Controllers
     {
         private readonly IOrderRepository _orderRepository;
         private readonly ShoppingCart _shoppingCart;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public OrderController(IOrderRepository orderRepository, ShoppingCart shoppingCart)
+        public OrderController(IOrderRepository orderRepository, ShoppingCart shoppingCart, UserManager<IdentityUser> userManager)
         {
             _orderRepository = orderRepository;
             _shoppingCart = shoppingCart;
+            _userManager = userManager;
+           
         }
 
         public IActionResult Checkout()
@@ -37,7 +42,7 @@ namespace GamesPlatform.Controllers
 
             if(ModelState.IsValid)
             {
-                
+                string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 string firstName = "";
                 string lastName = "";
                 string addressLine1 = "";
@@ -46,10 +51,13 @@ namespace GamesPlatform.Controllers
                 string city = "";
                 string country = "";
                 string phoneNumber = "";
-                string email = "";
+                string email = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 int orderId = 0;
+                order.OrderID = orderId;
 
-                _orderRepository.CreateOrder(items, firstName, lastName, addressLine1, addressLine2, zipCode, city, country, phoneNumber, email);
+                //var orderDetails = _orderDetailRepository.GetAllOrderDetails(orderId);
+                _orderRepository.CreateOrder(items, userId, firstName, lastName, addressLine1, addressLine2, zipCode, city, country, phoneNumber, email);
+
                 _shoppingCart.ClearCart();
                 return RedirectToAction("Index", "Payment");
             }
@@ -64,8 +72,10 @@ namespace GamesPlatform.Controllers
 
         public IActionResult Index()
         {
-            string firstName = "";
-            var orders = _orderRepository.GetOrdersByFirstName(firstName);
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+
+            var orders = _orderRepository.GetOrdersByUserID(userId);
             return View(orders);
 
         }
