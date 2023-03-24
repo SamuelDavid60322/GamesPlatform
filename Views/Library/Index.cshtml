@@ -5,6 +5,7 @@
 
 @if (Model.PurchasedGames.Count > 0)
 {
+    <h2 class="text-white">These are the current Games in your library</h2>
     <div class="row">
         @foreach (var game in Model.PurchasedGames)
         {

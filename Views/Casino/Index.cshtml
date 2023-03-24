@@ -1,5 +1,5 @@
 ﻿@model CasinoResult
-@*
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,28 +33,29 @@
         }
     </style>
 </head>
-<h1 class=" text-white text-center">Rock, Paper, Scissors</h1>
-<div class="game-container">
+<body>
+    <h1 class="text-white text-center">Rock, Paper, Scissors</h1>
+    <div class="game-container">
 
-    <form asp-action="Play" method="post">
-        <input type="submit" name="userChoice" value="Rock" />
-        <input type="submit" name="userChoice" value="Paper" />
-        <input type="submit" name="userChoice" value="Scissors" />
-    </form>
+        <form asp-action="Play" method="post">
+            <input type="submit" name="userChoice" value="Rock" />
+            <input type="submit" name="userChoice" value="Paper" />
+            <input type="submit" name="userChoice" value="Scissors" />
+        </form>
 
-    @if (Model != null && !string.IsNullOrEmpty(Model.UserChoice))
-    {
-        var resultClass = Model.Win ? "win" : (Model.Result == "It's a tie!" ? "tie" : "lose");
-        <div>
-            <h2 class=" text-white">Your choice: @Model.UserChoice</h2>
-            <h2 class=" text-white">Computer's choice: @Model.ComputerChoice</h2>
-            <h2 class="@resultClass">Result: @Model.Result</h2>
-            @if (Model.Win)
-            {
-                <h3 class="win text-white">Amount Won: €@Model.AmountWon</h3>
-            }
-        </div>
-    }
+        @if (Model != null && !string.IsNullOrEmpty(Model.UserChoice))
+        {
+            var resultClass = Model.Win ? "win" : (Model.Result == "It's a tie!" ? "tie" : "lose");
+            <div>
+                <h2 class="text-white">Your choice: @Model.UserChoice</h2>
+                <h2 class="text-white">Computer's choice: @Model.ComputerChoice</h2>
+                <h2 class="@resultClass">Result: @Model.Result</h2>
+                @if (Model.Win)
+                {
+                    <h3 class="win text-white">Amount Won: €@Model.AmountWon</h3>
+                }
+            </div>
+        }
     </div>
+</body>
 </html>
-*@
