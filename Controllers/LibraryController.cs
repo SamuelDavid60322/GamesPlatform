@@ -3,6 +3,7 @@ using GamesPlatform.Interfaces;
 using GamesPlatform.Models;
 using GamesPlatform.Repositories;
 using GamesPlatform.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
@@ -20,6 +21,7 @@ namespace GamesPlatform.Controllers
             _gamesRepository = gamesRepository;
             _applicationDbContext = applicationDbContext;
         }
+        [Authorize]
         public IActionResult Index()
         {
             string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;

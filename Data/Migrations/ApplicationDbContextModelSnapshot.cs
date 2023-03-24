@@ -40,7 +40,7 @@ namespace GamesPlatform.Data.Migrations
 
                     b.HasKey("CategoryID");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("GamesPlatform.Models.Game", b =>
@@ -83,7 +83,7 @@ namespace GamesPlatform.Data.Migrations
 
                     b.HasIndex("CategoryID");
 
-                    b.ToTable("Games");
+                    b.ToTable("Games", (string)null);
                 });
 
             modelBuilder.Entity("GamesPlatform.Models.Order", b =>
@@ -151,7 +151,7 @@ namespace GamesPlatform.Data.Migrations
 
                     b.HasKey("OrderID");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("GamesPlatform.Models.OrderDetail", b =>
@@ -180,7 +180,7 @@ namespace GamesPlatform.Data.Migrations
 
                     b.HasIndex("OrderID");
 
-                    b.ToTable("OrderDetails");
+                    b.ToTable("OrderDetails", (string)null);
                 });
 
             modelBuilder.Entity("GamesPlatform.Models.ShoppingCartItem", b =>
@@ -205,7 +205,7 @@ namespace GamesPlatform.Data.Migrations
 
                     b.HasIndex("GameID");
 
-                    b.ToTable("ShoppingCartItems");
+                    b.ToTable("ShoppingCartItems", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
