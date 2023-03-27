@@ -1,8 +1,10 @@
-﻿using GamesPlatform.Interfaces;
+﻿using GamesPlatform.Data;
+using GamesPlatform.Interfaces;
 using GamesPlatform.Models;
 using GamesPlatform.Repositories;
 using GamesPlatform.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace GamesPlatform.Controllers
 {
@@ -10,11 +12,13 @@ namespace GamesPlatform.Controllers
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly IGamesRepository _gamesRepository;
+        private readonly ApplicationDbContext _applicationDbContext;
 
-        public GamesController(ICategoryRepository categoryRepository, IGamesRepository gamesRepository)
+        public GamesController(ICategoryRepository categoryRepository, IGamesRepository gamesRepository, ApplicationDbContext applicationDbContext)
         {
             _categoryRepository = categoryRepository;
             _gamesRepository = gamesRepository;
+            _applicationDbContext = applicationDbContext;
 
         }
 
