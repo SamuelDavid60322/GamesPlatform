@@ -4,6 +4,7 @@ using GamesPlatform.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GamesPlatform.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230327101752_CasinoResult")]
+    partial class CasinoResult
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,7 +56,7 @@ namespace GamesPlatform.Data.Migrations
 
                     b.HasKey("ResultID");
 
-                    b.ToTable("CasinoResults", (string)null);
+                    b.ToTable("CasinoResults");
                 });
 
             modelBuilder.Entity("GamesPlatform.Models.Category", b =>
@@ -74,7 +77,7 @@ namespace GamesPlatform.Data.Migrations
 
                     b.HasKey("CategoryID");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("GamesPlatform.Models.Game", b =>
@@ -117,7 +120,7 @@ namespace GamesPlatform.Data.Migrations
 
                     b.HasIndex("CategoryID");
 
-                    b.ToTable("Games", (string)null);
+                    b.ToTable("Games");
                 });
 
             modelBuilder.Entity("GamesPlatform.Models.Order", b =>
@@ -185,7 +188,7 @@ namespace GamesPlatform.Data.Migrations
 
                     b.HasKey("OrderID");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("GamesPlatform.Models.OrderDetail", b =>
@@ -214,7 +217,7 @@ namespace GamesPlatform.Data.Migrations
 
                     b.HasIndex("OrderID");
 
-                    b.ToTable("OrderDetails", (string)null);
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("GamesPlatform.Models.ShoppingCartItem", b =>
@@ -239,27 +242,7 @@ namespace GamesPlatform.Data.Migrations
 
                     b.HasIndex("GameID");
 
-                    b.ToTable("ShoppingCartItems", (string)null);
-                });
-
-            modelBuilder.Entity("GamesPlatform.Models.Wallet", b =>
-                {
-                    b.Property<int>("WalletID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WalletID"));
-
-                    b.Property<string>("UserID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("WalletBalance")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("WalletID");
-
-                    b.ToTable("Wallets", (string)null);
+                    b.ToTable("ShoppingCartItems");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

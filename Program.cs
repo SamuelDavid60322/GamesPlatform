@@ -29,6 +29,8 @@ namespace GamesPlatform
             builder.Services.AddScoped(sp => ShoppingCart.GetCart(sp));
             builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
             builder.Services.AddTransient<IOrderRepository, OrderRepository>();
+            builder.Services.AddTransient<ICasinoResultRepository, CasinoResultRepository>();
+            builder.Services.AddTransient<IWalletRepository, WalletRepository>();
             builder.Services.AddMvc();
 
             builder.Services.AddMemoryCache();

@@ -16,6 +16,8 @@ namespace GamesPlatform.Data
         public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<CasinoResult> CasinoResults { get; set; }
+        public DbSet<Wallet> Wallets { get; set; }
     }
 }
 

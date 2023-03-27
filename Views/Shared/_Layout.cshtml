@@ -40,23 +40,9 @@
                         </li>
                         <li class="navbar-nav">
                             <a class="nav-link text-white">@await Component.InvokeAsync("ShoppingCartSummary")</a>
+                            <a class="nav-link text-white">@await Component.InvokeAsync("WalletBalance")</a>
                         </li>
 
-                        @*User Profile Section*@
-                        <div class="dropdown">
-                            <button class="btn btn-success dropdown-toggle" type="button" id="profile-btn" data-toggle="dropdown" aria-expanded="false">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
-</svg> Hello User
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="profile-btn">
-                                <li>
-                                    <a class="dropdown-menu" asp-controller="Order" asp-action="Index">
-                                        <i class= "bi bi-list" </i> Orders
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
                     </ul>
                     <form class="navbar-form navbar-right" asp-controller="Games" asp-action="Search" method="get">
                         <div class="form-group">

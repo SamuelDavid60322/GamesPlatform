@@ -9,9 +9,12 @@ namespace GamesPlatform.Controllers
     public class CasinoController : Controller
     {
         private readonly IGamesRepository _gamesRepository;
-        public CasinoController(IGamesRepository gamesRepository)
+        private readonly ICasinoResultRepository _casinoResultRepository;
+
+        public CasinoController(IGamesRepository gamesRepository, ICasinoResultRepository casinoResultRepository)
         {
             _gamesRepository = gamesRepository;
+            _casinoResultRepository = casinoResultRepository;
         }
 
         [Authorize]
@@ -23,6 +26,11 @@ namespace GamesPlatform.Controllers
         [Authorize]
         public IActionResult Play(string userChoice)
         {
+            if (userChoice == null)
+            {
+                return View("Index");
+            }
+
             var computerChoice = GetComputerChoice();
             var (result, amountWon) = DetermineResult(userChoice, computerChoice);
             var win = result == "Congratulations! You won!";
@@ -36,6 +44,7 @@ namespace GamesPlatform.Controllers
                 AmountWon = amountWon,
                 DateResultPlaced = DateTime.UtcNow
             };
+            _casinoResultRepository.CreateCasinoResult(gameResult);
 
             return View("Index", gameResult);
         }

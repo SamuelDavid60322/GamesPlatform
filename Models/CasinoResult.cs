@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.ComponentModel.DataAnnotations;
 
 namespace GamesPlatform.Models
 {
     public class CasinoResult
     {
+            [Key]        
             [BindNever]
-            public int ResultId { get; set; }
+            public int ResultID { get; set; }
             public string UserChoice { get; set; }
             public string ComputerChoice { get; set; }
             public string Result { get; set; }
