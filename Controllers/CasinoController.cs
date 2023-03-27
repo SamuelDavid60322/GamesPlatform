@@ -2,7 +2,10 @@
 using GamesPlatform.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Linq;
+using System.Security.Claims;
 
 namespace GamesPlatform.Controllers
 {
@@ -10,11 +13,13 @@ namespace GamesPlatform.Controllers
     {
         private readonly IGamesRepository _gamesRepository;
         private readonly ICasinoResultRepository _casinoResultRepository;
+        private readonly IWalletRepository _walletRepository;
 
-        public CasinoController(IGamesRepository gamesRepository, ICasinoResultRepository casinoResultRepository)
+        public CasinoController(IGamesRepository gamesRepository, ICasinoResultRepository casinoResultRepository, IWalletRepository walletRepository)
         {
             _gamesRepository = gamesRepository;
             _casinoResultRepository = casinoResultRepository;
+            _walletRepository = walletRepository;
         }
 
         [Authorize]
@@ -31,6 +36,7 @@ namespace GamesPlatform.Controllers
                 return View("Index");
             }
 
+            string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var computerChoice = GetComputerChoice();
             var (result, amountWon) = DetermineResult(userChoice, computerChoice);
             var win = result == "Congratulations! You won!";
@@ -45,7 +51,10 @@ namespace GamesPlatform.Controllers
                 DateResultPlaced = DateTime.UtcNow
             };
             _casinoResultRepository.CreateCasinoResult(gameResult);
-
+            if (gameResult.Win)
+            {
+                _walletRepository.AddToWallet(userId, gameResult.AmountWon);
+            }
             return View("Index", gameResult);
         }
 
@@ -64,6 +73,7 @@ namespace GamesPlatform.Controllers
 
         private (string, decimal) DetermineResult(string userChoice, string computerChoice)
         {
+            string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             if (userChoice == computerChoice) return ("It's a tie!", 0);
             if (userChoice == "Rock" && computerChoice == "Scissors") return ("Congratulations! You won!", 10);
             if (userChoice == "Paper" && computerChoice == "Rock") return ("Congratulations! You won!", 10);
