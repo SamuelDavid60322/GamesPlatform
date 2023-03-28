@@ -4,6 +4,7 @@ using GamesPlatform.Models;
 using GamesPlatform.Repositories;
 using GamesPlatform.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace GamesPlatform.Controllers
@@ -24,6 +25,17 @@ namespace GamesPlatform.Controllers
 
         public ViewResult List(string category)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var purchasedGameIDs = new List<int>();
+            if (userId != null)
+            {
+                purchasedGameIDs = _applicationDbContext.OrderDetails
+                    .Include(od => od.Order)
+                    .Where(od => od.Order.UserID == userId)
+                    .Select(od => od.GameID)
+                    .ToList();
+            }
+
             IEnumerable<Game> games;
             string currentCategory;
             //if category is null then current category is all games
@@ -43,7 +55,8 @@ namespace GamesPlatform.Controllers
             return View(new GameListViewModel
             {
                 Games = games,
-                CurrentCategory = currentCategory
+                CurrentCategory = currentCategory,
+                PurchasedGameIDs = purchasedGameIDs
             });
         }
 
@@ -73,10 +86,18 @@ namespace GamesPlatform.Controllers
             {
                 return View("~/Views/Error/Error.cshtml");
             }
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            bool userOwnsGame = UserOwnsGame(userId, gameId);
+            ViewData["UserHasGame"] = userOwnsGame;
             return View(game);
         }
 
-
+        public bool UserOwnsGame(string userId, int gameId)
+        {
+            // Assuming you have the ApplicationDbContext and the OrderDetails DbSet
+            var userOwnsGame = _applicationDbContext.OrderDetails.Include(od => od.Order).Any(od => od.Order.UserID == userId && od.GameID == gameId);
+            return userOwnsGame;
+        }
         public IActionResult hol()
         {
             return View();

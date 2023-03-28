@@ -10,18 +10,18 @@
       <div class="startCasinoGame">
        <a class="btn btn-success mt-auto start-game" asp-controller="Games" asp-action="hol" asp-route-gameId="@Model.GameID">Start Game</a>
             </div>
-        } else
-        {
-            <div class="addToCart text-right text-white">
-             <p class="btn btn-success">
-             <a class="btn btn-success text-white" id= "cartButton"
-             asp-controller="ShoppingCart"
-             asp-action="AddToShoppingCart"
-              asp-route-gameID="@Model.GameID">
-              Add To Cart
-             </a>
-            </p>        
+        }    else
+    {
+        <div class="addToCart text-right text-white">
+            @if (ViewData["UserHasGame"] != null && (bool)ViewData["UserHasGame"])
+            {
+                <a class="btn btn-success text-white" asp-controller="Games" asp-action="PlayGame" asp-route-gameId="@Model.GameID">Play Game</a>
+            }
+            else
+            {
+                <a class="btn btn-success text-white" id="cartButton" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-gameID="@Model.GameID">Add To Cart</a>
+            }
         </div>
-        }
+    }
   </div>
 </div>

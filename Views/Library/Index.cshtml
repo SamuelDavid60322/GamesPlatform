@@ -9,7 +9,11 @@
     <div class="row">
         @foreach (var game in Model.PurchasedGames)
         {
-            @Html.Partial("GameCard", game)
+            var partialViewData = new ViewDataDictionary(ViewData)
+        {
+            { "UserHasGame", true }
+        };
+            @Html.Partial("GameCard", game, partialViewData)
         }
     </div>
     

@@ -6,5 +6,6 @@ namespace GamesPlatform.ViewModels
     {
         public IEnumerable<Game> Games { get; set; }
         public string CurrentCategory { get; set; }
+        public IEnumerable<int> PurchasedGameIDs { get; set; }
     }
 }
