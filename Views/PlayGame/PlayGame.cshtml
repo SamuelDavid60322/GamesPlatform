@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "Play Game";
+}
+
+<h2 class="text-white">Play Game</h2>
+<div id="gameContainer"></div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var gameID = '@ViewBag.GameID';
+            loadGame(gameID);
+        });
+
+        function loadGame(gameID) {
+            var gameEmbedCode = '';
+
+            // Replace the following with actual gameID and embed code mapping
+            switch (gameID) {
+                case '2':
+                    gameEmbedCode = '<div style="position: relative;height: 0;overflow: hidden;padding-bottom: 56.25%;">' +
+                        '<iframe id="embededGame" src="https://idev.games/embed/keep-it-up-football-kick-ups-" scrolling="no" seamless="seamless" frameBorder="0" style="position: absolute;top:0;left: 0;width: 100%;height: 100%;">Browser not compatible.</iframe>' +
+                        '</div>' + '<button onclick="goFullscreen(\'embededGame\');  return false" style=" background-color: #4CAF50; color: white;  text-align: center; border-radius: 25px;">Fullscreen</button>';
+                break;
+                case '3':
+                gameEmbedCode = '<div style="position: relative;height: 0;overflow: hidden;padding-bottom: 56.25%;">' +
+                        '<iframe id="embededGame" src="https://idev.games/embed/amoeba-online" scrolling="no" seamless="seamless" frameBorder="0" style="position: absolute;top:0;left: 0;width: 100%;height: 100%;">Browser not compatible.</iframe>' +
+                        '</div>' + '<button onclick="goFullscreen(\'embededGame\');  return false" style=" background-color: #4CAF50; color: white;  text-align: center; border-radius: 25px;">Fullscreen</button>';
+                break;
+                case '4':
+                gameEmbedCode = '<div style="position: relative;height: 0;overflow: hidden;padding-bottom: 56.25%;">' +
+                        '<iframe id="embededGame" src="https://idev.games/embed/reaction" scrolling="no" seamless="seamless" frameBorder="0" style="position: absolute;top:0;left: 0;width: 100%;height: 100%;">Browser not compatible.</iframe>' +
+                        '</div>' + '<button onclick="goFullscreen(\'embededGame\');  return false" style=" background-color: #4CAF50; color: white;  text-align: center; border-radius: 25px;">Fullscreen</button>';
+                break;
+                case '5':
+                gameEmbedCode = '<div style="position: relative;height: 0;overflow: hidden;padding-bottom: 56.25%;">' +
+                        '<iframe id="embededGame" src="https://idev.games/embed/dungeon-deathmatch" scrolling="no" seamless="seamless" frameBorder="0" style="position: absolute;top:0;left: 0;width: 100%;height: 100%;">Browser not compatible.</iframe>' +
+                        '</div>' + '<button onclick="goFullscreen(\'embededGame\');  return false" style=" background-color: #4CAF50; color: white;  text-align: center; border-radius: 25px;">Fullscreen</button>';
+                break;
+                case '6':
+                    gameEmbedCode = '<div style="position: relative;height: 0;overflow: hidden;padding-bottom: 56.25%;">' +
+                        '<iframe id="embededGame" src="https://idev.games/embed/dave-wakes-up" scrolling="no" seamless="seamless" frameBorder="0" style="position: absolute;top:0;left: 0;width: 100%;height: 100%;">Browser not compatible.</iframe>' +
+                        '</div>' + '<button onclick="goFullscreen(\'embededGame\');  return false" style=" background-color: #4CAF50; color: white;  text-align: center; border-radius: 25px;">Fullscreen</button>';
+                break;
+                case '7':
+                    gameEmbedCode = '<div style="position: relative;height: 0;overflow: hidden;padding-bottom: 56.25%;">' +
+                        '<iframe id="embededGame" src="https://idev.games/embed/tower-of-hanoi" scrolling="no" seamless="seamless" frameBorder="0" style="position: absolute;top:0;left: 0;width: 100%;height: 100%;">Browser not compatible.</iframe>' +
+                        '</div>'+ '<button onclick="goFullscreen(\'embededGame\');  return false" style=" background-color: #4CAF50; color: white;  text-align: center; border-radius: 25px;">Fullscreen</button>';
+                break;
+                case '8':
+                    gameEmbedCode = '<div style="position: relative;height: 0;overflow: hidden;padding-bottom: 56.25%;">' +
+                        '<iframe id="embededGame" src="https://idev.games/embed/high-or-low---number-guessing-game" scrolling="no" seamless="seamless" frameBorder="0" style="position: absolute;top:0;left: 0;width: 100%;height: 100%;">Browser not compatible.</iframe>' +
+                        '</div>' + '<button onclick="goFullscreen(\'embededGame\');  return false" style=" background-color: #4CAF50; color: white;  text-align: center; border-radius: 25px;">Fullscreen</button>';
+                break;
+            // Add more cases for other games
+            default:
+                gameEmbedCode = 'Invalid gameID or game not purchased.';
+        }
+            $('#gameContainer').html(gameEmbedCode);
+        }
+        function goFullscreen(iframeId) {
+            var iframe = document.getElementById(iframeId);
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) { /* Firefox */
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) { /* IE/Edge */
+                iframe.msRequestFullscreen();
+            }
+        }
+    </script>
+    }

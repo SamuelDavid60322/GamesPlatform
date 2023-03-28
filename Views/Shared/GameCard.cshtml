@@ -15,7 +15,7 @@
         <div class="addToCart text-right text-white">
             @if (ViewData["UserHasGame"] != null && (bool)ViewData["UserHasGame"])
             {
-                <a class="btn btn-success text-white" asp-controller="Games" asp-action="PlayGame" asp-route-gameId="@Model.GameID">Play Game</a>
+                    <a class="btn btn-success text-white" asp-controller="PlayGame" asp-action="PlayGame" asp-route-gameId="@Model.GameID">Play Game</a>
             }
             else
             {
