@@ -9,11 +9,7 @@
 @{
     foreach (Game game in Model.Games)
     {
-        var isGameOwned = Model.PurchasedGameIDs.Contains(game.GameID);
-        var partialViewData = new ViewDataDictionary(ViewData)
-        {
-            { "IsGameOwned", isGameOwned }
-        };
-        @Html.Partial("GameCard", game, partialViewData)
+
+        @Html.Partial("GameCard", game)
     }
 }

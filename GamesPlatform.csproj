@@ -15,7 +15,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.5" />
+    <PackageReference Include="PayoutsSdk" Version="1.1.1" />
     <PackageReference Include="PayPal" Version="1.9.1" />
+    <PackageReference Include="PayPalCoreSDK" Version="1.7.1" />
     <PackageReference Include="Stripe.net" Version="41.3.0" />
   </ItemGroup>
 
