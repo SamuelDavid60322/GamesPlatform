@@ -8,7 +8,7 @@
     <p class="card-text">€@Model.Price</p>
     @if (Model.CategoryID >=4){
       <div class="startCasinoGame">
-       <a class="btn btn-success mt-auto start-game" asp-controller="Games" asp-action="hol" asp-route-gameId="@Model.GameID">Start Game</a>
+                <a class="btn btn-success mt-auto start-game" asp-controller="PlayGame" asp-action="PlayGame" asp-route-gameId="@Model.GameID">Start Game</a>
             </div>
         }    else
     {
