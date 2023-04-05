@@ -1,6 +1,9 @@
-﻿namespace GamesPlatform.Interfaces
+﻿using GamesPlatform.Models;
+
+namespace GamesPlatform.Interfaces
 {
-    public class IWithdrawRepository
+    public interface IWithdrawRepository
     {
+        void WithdrawMade(Withdraw withdraw);
     }
 }

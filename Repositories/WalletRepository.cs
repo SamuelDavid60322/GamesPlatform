@@ -47,6 +47,18 @@ namespace GamesPlatform.Repositories
             return result;
         }
 
+        public int RetrieveWalletID(string userId)
+        {
+            Wallet wallet = _applicationDbContext.Wallets.FirstOrDefault(w => w.UserID == userId);
+
+            if (wallet == null)
+            {
+                return 0;
+            }
+            int result = wallet.WalletID;
+            return result;
+        }
+
         public void SubtractFromWallet(string userId, decimal removedAmount)
         {
             var wallet = _applicationDbContext.Wallets.FirstOrDefault(w => w.UserID == userId);
