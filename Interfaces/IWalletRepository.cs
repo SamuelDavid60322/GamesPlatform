@@ -6,5 +6,6 @@
         void SubtractFromWallet(string userId, decimal removedAmount);
         decimal GetBalance(string userId);
         int RetrieveWalletID(string userId);
+        void AddFundsToWallet(string userId, decimal amount);
     }
 }

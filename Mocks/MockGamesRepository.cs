@@ -88,6 +88,8 @@ namespace GamesPlatform.Mocks
   
         public IEnumerable<Game> FeaturedGames { get; }
         public IEnumerable<Game> FreeGames { get; }
+        public IEnumerable<Game> CasinoGames { get; }
+
 
         public Game GetGamesById(int GameId)
         {

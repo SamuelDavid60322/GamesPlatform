@@ -18,6 +18,7 @@ namespace GamesPlatform.Repositories
         public IEnumerable<Game> FeaturedGames => _applicationDbContext.Games.Where(p => p.IsFeaturedGame).Include(c => c.Category);
 
         public IEnumerable<Game> FreeGames => _applicationDbContext.Games.Where(p => p.IsFreeGame).Include(c => c.Category);
+        public IEnumerable<Game> CasinoGames => _applicationDbContext.Games.Where(p => p.IsCasinoGame).Include(c => c.Category);
 
         public Game GetGamesById(int GamesId) => _applicationDbContext.Games.FirstOrDefault(p => p.GameID == GamesId);
         

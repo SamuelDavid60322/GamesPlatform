@@ -67,5 +67,25 @@ namespace GamesPlatform.Repositories
             wallet.WalletBalance = result;
             _applicationDbContext.SaveChanges();
         }
+
+        public void AddFundsToWallet(string userId, decimal addedAmount)
+        {
+            var wallet = _applicationDbContext.Wallets.FirstOrDefault(w => w.UserID == userId);
+
+            if (wallet == null)
+            {
+                Wallet newWallet = new Wallet();
+                newWallet.UserID = userId;
+                newWallet.WalletBalance = addedAmount;
+                _applicationDbContext.Wallets.Add(newWallet);
+            }
+            else
+            {
+                wallet.WalletBalance += addedAmount;
+            }
+
+            _applicationDbContext.SaveChanges();
+        }
     }
 }
+

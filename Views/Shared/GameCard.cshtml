@@ -6,8 +6,14 @@
     <h5 class="card-title">@Model.GameName</h5>
     <p class="card-text">@Model.GameDescription</p>
     <p class="card-text">€@Model.Price</p>
+        @if (Model.CategoryID == 3)
+        {
+            <div class="startCasinoGame">
+                <a class="btn btn-success mt-auto start-game" asp-controller="PlayGame" asp-action="PlayGame" asp-route-gameId="@Model.GameID">Play Game for €5</a>
+            </div>
+        }
     @if (Model.CategoryID >=4){
-      <div class="startCasinoGame">
+      <div class="startFreeGame">
                 <a class="btn btn-success mt-auto start-game" asp-controller="PlayGame" asp-action="PlayGame" asp-route-gameId="@Model.GameID">Start Game</a>
             </div>
         }    else
