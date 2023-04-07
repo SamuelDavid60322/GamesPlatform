@@ -1,5 +1,6 @@
 ﻿using GamesPlatform.Interfaces;
 using GamesPlatform.Models;
+using GamesPlatform.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
@@ -22,63 +23,72 @@ namespace GamesPlatform.Controllers
             _walletRepository = walletRepository;
         }
 
-        [Authorize]
-        public IActionResult Index()
+        //[Authorize]
+        //public IActionResult Inddex()
+        //{
+        //    return RedirectToAction("Play", "Casino");
+        //}
+        public ViewResult Index()
         {
-            return RedirectToAction("Play", "Casino");
-        }
-
-        [Authorize]
-        public IActionResult Play(string userChoice)
-        {
-            if (userChoice == null)
+            var casinoViewModel = new CasinoViewModel
             {
-                return View("Index");
-            }
-
-            string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var computerChoice = GetComputerChoice();
-            var (result, amountWon) = DetermineResult(userChoice, computerChoice);
-            var win = result == "Congratulations! You won!";
-
-            var gameResult = new CasinoResult
-            {
-                UserChoice = userChoice,
-                ComputerChoice = computerChoice,
-                Result = result,
-                Win = win,
-                AmountWon = amountWon,
-                DateResultPlaced = DateTime.UtcNow
+                CasinoGame = _gamesRepository.CasinoGames
+      
             };
-            _casinoResultRepository.CreateCasinoResult(gameResult);
-            if (gameResult.Win)
-            {
-                _walletRepository.AddToWallet(userId, gameResult.AmountWon);
-            }
-            return View("Index", gameResult);
+            return View(casinoViewModel);
         }
 
-        private string GetComputerChoice()
-        {
-            var random = new Random();
-            int choice = random.Next(1, 4);
+        //[Authorize]
+        //public IActionResult Play(string userChoice)
+        //{
+        //    if (userChoice == null)
+        //    {
+        //        return View("Inddex");
+        //    }
 
-            return choice switch
-            {
-                1 => "Rock",
-                2 => "Paper",
-                _ => "Scissors"
-            };
-        }
+        //    string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        //    var computerChoice = GetComputerChoice();
+        //    var (result, amountWon) = DetermineResult(userChoice, computerChoice);
+        //    var win = result == "Congratulations! You won!";
 
-        private (string, decimal) DetermineResult(string userChoice, string computerChoice)
-        {
-            string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            if (userChoice == computerChoice) return ("It's a tie!", 0);
-            if (userChoice == "Rock" && computerChoice == "Scissors") return ("Congratulations! You won!", 10);
-            if (userChoice == "Paper" && computerChoice == "Rock") return ("Congratulations! You won!", 10);
-            if (userChoice == "Scissors" && computerChoice == "Paper") return ("Congratulations! You won!", 10);
-            return ("Sorry, you lost!", 0);
-        }
+        //    var gameResult = new CasinoResult
+        //    {
+        //        UserChoice = userChoice,
+        //        ComputerChoice = computerChoice,
+        //        Result = result,
+        //        Win = win,
+        //        AmountWon = amountWon,
+        //        DateResultPlaced = DateTime.UtcNow
+        //    };
+        //    _casinoResultRepository.CreateCasinoResult(gameResult);
+        //    if (gameResult.Win)
+        //    {
+        //        _walletRepository.AddToWallet(userId, gameResult.AmountWon);
+        //    }
+        //    return View("Inddex", gameResult);
+        //}
+
+        //private string GetComputerChoice()
+        //{
+        //    var random = new Random();
+        //    int choice = random.Next(1, 4);
+
+        //    return choice switch
+        //    {
+        //        1 => "Rock",
+        //        2 => "Paper",
+        //        _ => "Scissors"
+        //    };
+        //}
+
+        //private (string, decimal) DetermineResult(string userChoice, string computerChoice)
+        //{
+        //    string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        //    if (userChoice == computerChoice) return ("It's a tie!", 0);
+        //    if (userChoice == "Rock" && computerChoice == "Scissors") return ("Congratulations! You won!", 10);
+        //    if (userChoice == "Paper" && computerChoice == "Rock") return ("Congratulations! You won!", 10);
+        //    if (userChoice == "Scissors" && computerChoice == "Paper") return ("Congratulations! You won!", 10);
+        //    return ("Sorry, you lost!", 0);
+        //}
     }
 }

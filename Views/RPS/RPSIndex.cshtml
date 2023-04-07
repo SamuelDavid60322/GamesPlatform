@@ -1,19 +1,4 @@
-﻿@model CasinoViewModel
-@{
-    ViewData["Title"] = "Casino";
-}
-
-<h2 class="text-white">Casino Games</h2>
-
-<div class="row">
-    @foreach (var game in Model.CasinoGame)
-    {
-        @Html.Partial("GameCard", game)
-    }
-</div>
-
-
-@*@model CasinoResult
+﻿@model CasinoResult
 
 <!DOCTYPE html>
 <html>
@@ -74,4 +59,4 @@
         }
     </div>
 </body>
-</html>*@
+</html>

@@ -1,0 +1,24 @@
+﻿@model SlotMachineViewModel
+@{
+    ViewData["Title"] = "Slot Machine";
+}
+
+<h1 class="text-white">@ViewData["Title"]</h1>
+
+<form asp-action="Spin" method="post">
+    <button type="submit" class="btn btn-primary">Spin</button>
+</form>
+
+@if (Model?.IsWinner != null)
+{
+    <h2 class="text-white">Reels: @string.Join(" | ", Model.Reels)</h2>
+        <h2 class="@(Model.IsWinner.Value ? "text-success" : "text-danger")">@(Model.IsWinner.Value ? "You won!" : "You lost.")</h2>
+    <h3 class="text-white">Game Details:</h3>
+    <ul class="text-white">
+            <li class="text-white">User Choice: @Model.CasinoResult.UserChoice</li>
+        <li class="text-white">Computer Choice: @Model.CasinoResult.ComputerChoice</li>
+        <li class="text-white">Result: @Model.CasinoResult.Result</li>
+        <li class="text-white">Amount Won: @Model.CasinoResult.AmountWon</li>
+        <li class="text-white">Date Result Placed: @Model.CasinoResult.DateResultPlaced</li>
+        </ul>
+}
