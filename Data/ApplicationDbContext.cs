@@ -19,6 +19,7 @@ namespace GamesPlatform.Data
         public DbSet<CasinoResult> CasinoResults { get; set; }
         public DbSet<Wallet> Wallets { get; set; }
         public DbSet<Withdraw> Withdraws { get; set; }
+        public DbSet<Verification> Verifications { get; set; }
     }
 }
 

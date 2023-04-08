@@ -32,6 +32,7 @@ namespace GamesPlatform
             builder.Services.AddTransient<ICasinoResultRepository, CasinoResultRepository>();
             builder.Services.AddTransient<IWalletRepository, WalletRepository>();
             builder.Services.AddTransient<IWithdrawRepository, WithdrawRepository>();
+            builder.Services.AddTransient<IVerificationRepository, VerificationRepository>();
             builder.Services.AddMvc();
 
             builder.Services.AddMemoryCache();
