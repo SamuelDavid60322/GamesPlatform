@@ -28,9 +28,85 @@ body {
     hsl(218, 41%, 20%) 75%, 
     hsl(218, 41%, 19%) 80%, transparent 100%);
     margin-bottom: 60px;
+    padding-top: 70px;
 }
 
 .bg-glass {
     background-color: hsla(0, 0%, 100%, 0.9) !important;
     backdrop-filter: blur(50px);
+}
+
+/*Layout Navbar Styling*/
+
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    border-bottom: 1px solid #1a3461;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.navbar-collapse {
+    display: flex;
+}
+
+.nav-item a {
+  position: relative;
+}
+
+.nav-item a:hover {
+  font-weight: bold;
+}
+
+.nav-item a:hover::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #258cfb;
+}
+
+.nav-item {
+    line-height: 1;
+    display: flex;
+    align-items: center;
+}
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-toggle {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.nav-item-dropdown.dropdown-toggle {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.btn:focus:not(.dropdown-toggle), .btn:active:focus:not(.dropdown-toggle), .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+.dropdown-menu {
+    margin-right: 16px;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.dropdown.show .dropdown-menu {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.nav-link:hover:not(.dropdown-toggle) {
+    font-weight: bold;
 }
