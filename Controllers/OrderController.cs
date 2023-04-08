@@ -13,13 +13,11 @@ namespace GamesPlatform.Controllers
     {
         private readonly IOrderRepository _orderRepository;
         private readonly ShoppingCart _shoppingCart;
-        private readonly UserManager<IdentityUser> _userManager;
 
-        public OrderController(IOrderRepository orderRepository, ShoppingCart shoppingCart, UserManager<IdentityUser> userManager)
+        public OrderController(IOrderRepository orderRepository, ShoppingCart shoppingCart)
         {
             _orderRepository = orderRepository;
             _shoppingCart = shoppingCart;
-            _userManager = userManager;
            
         }
 
