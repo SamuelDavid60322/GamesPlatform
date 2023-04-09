@@ -10,6 +10,7 @@ namespace GamesPlatform.Models
         [Range(0.00, 900.00)]
         public decimal Price { get; set; }
         public string GameImageUrl { get; set; }
+        public string GameVideoUrl { get; set; }
         public string GameImageThumbnailUrl { get; set; }
         public bool IsFeaturedGame { get; set; }
         public bool IsFreeGame { get; set; }
