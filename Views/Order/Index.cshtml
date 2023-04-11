@@ -10,7 +10,7 @@
             <h4>List of all your orders</h4>
         </p>
 
-        <table class="table text-white">
+        <table class="table  table-striped bg-dark text-white" style="border-radius: 1rem;"">
             <thead>
                 <tr>
                     <th>Order ID</th>
@@ -30,7 +30,7 @@
                                 {
                                     <li>
                                         <div class="alert alert-info" role="alert">
-                                            <span class="badge bg-success">@item.Amount</span> [@item.Price.ToString("c")] - @item.Game.GameName
+                                            <span class="badge bg-primary">@item.Amount</span> [@item.Price.ToString("c")] - @item.Game.GameName
                                         </div>
                                     </li>
                                 }

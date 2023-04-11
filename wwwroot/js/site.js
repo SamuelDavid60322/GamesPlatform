@@ -19,3 +19,20 @@ document.getElementById('paper').addEventListener('click', function () {
 document.getElementById('scissors').addEventListener('click', function () {
     handleUserChoice('Scissors');
 });
+
+// Coin flip animation function
+function flipCoin() {
+    var coin = document.getElementById("coin");
+    coin.classList.toggle("cf-coin-flip");
+}
+
+// Handle the flip button click
+document.getElementById("flipBtn").addEventListener("click", function (event) {
+    event.preventDefault();
+    flipCoin();
+
+    // Submit the form after the animation has finished
+    setTimeout(function () {
+        document.querySelector("form").submit();
+    }, 10000);
+});
