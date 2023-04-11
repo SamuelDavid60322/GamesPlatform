@@ -6,20 +6,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>Rock, Paper, Scissors</title>
     <style>
-        .game-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        form {
-            display: flex;
-            gap: 1rem;
-        }
-
+        /* Add your styles here */
         .win {
             color: green;
         }
@@ -33,15 +20,13 @@
         }
     </style>
 </head>
-<body>
+<body class="rps">
     <h1 class="text-white text-center">Rock, Paper, Scissors</h1>
     <div class="game-container">
 
-        <form asp-action="Play" method="post">
-            <input type="submit" name="userChoice" value="Rock" />
-            <input type="submit" name="userChoice" value="Paper" />
-            <input type="submit" name="userChoice" value="Scissors" />
-        </form>
+        <img src="~/image/gameimages/rockk.png" alt="Rock" id="rock" style="cursor: pointer;" />
+        <img src="~/image/gameimages/papers.png" alt="Paper" id="paper" style="cursor: pointer;" />
+        <img src="~/image/gameimages/scissorss.png" alt="Scissors" id="scissors" style="cursor: pointer;" />
 
         @if (Model != null && !string.IsNullOrEmpty(Model.UserChoice))
         {
@@ -49,7 +34,6 @@
             <div>
                 <h2 class="text-white">Your choice: @Model.UserChoice</h2>
                 <h2 class="text-white">Computer's choice: @Model.ComputerChoice</h2>
-                <h2 class="text-white">Date: @Model.DateResultPlaced</h2>
                 <h2 class="@resultClass">Result: @Model.Result</h2>
                 @if (Model.Win)
                 {
@@ -58,5 +42,7 @@
             </div>
         }
     </div>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
 </body>
 </html>

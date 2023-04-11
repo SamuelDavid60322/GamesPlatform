@@ -4,17 +4,17 @@
     ViewData["Title"] = "Register confirmation";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1 class="text-white">@ViewData["Title"]</h1>
 @{
     if (@Model.DisplayConfirmAccountLink)
     {
-<p id="confirm-link" href="@Model.EmailConfirmationUrl">
-   Click here to confirm your account and enjoy Gamesino!
+<p class="text-white">
+    Normally this would be emailed: <a id="confirm-link" href="@Model.EmailConfirmationUrl">Click here to confirm your account</a>
 </p>
     }
     else
     {
-<p>
+<p class="text-white">
         Please check your email to confirm your account.
 </p>
     }

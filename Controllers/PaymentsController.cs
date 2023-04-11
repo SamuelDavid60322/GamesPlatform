@@ -62,8 +62,8 @@ namespace GamesPlatform.Controllers
           },
         },
                 Mode = "payment",
-                SuccessUrl = "https://localhost:7290/Payments/Success?session_id={CHECKOUT_SESSION_ID}",
-                CancelUrl = "https://localhost:7290/Payments/Cancel",
+                SuccessUrl = "https://gamesino.azurewebsites.net/Payments/Success?session_id={CHECKOUT_SESSION_ID}",
+                CancelUrl = "https://gamesino.azurewebsites.net/Payments/Cancel",
             };
 
             var service = new SessionService();
@@ -110,8 +110,8 @@ namespace GamesPlatform.Controllers
                 { "user_id", userId },
             },
                 },
-                SuccessUrl = $"https://localhost:7290/Payments/Success?session_id={{CHECKOUT_SESSION_ID}}&user_id={WebUtility.UrlEncode(userId)}&added_amount={WebUtility.UrlEncode(amount.ToString(CultureInfo.InvariantCulture))}",
-                CancelUrl = "https://localhost:7290/Payments/Cancel",
+                SuccessUrl = $"https://localhost:7290/gamesino.azurewebsites.net/Success?session_id={{CHECKOUT_SESSION_ID}}&user_id={WebUtility.UrlEncode(userId)}&added_amount={WebUtility.UrlEncode(amount.ToString(CultureInfo.InvariantCulture))}",
+                CancelUrl = "https://localhost:7290/gamesino.azurewebsites.net/Cancel",
             };
 
             var service = new SessionService();
