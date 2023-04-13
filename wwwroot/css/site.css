@@ -1,5 +1,6 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
+    position: relative;
 }
 
 @media (min-width: 768px) {
@@ -8,13 +9,13 @@ html {
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+html {
+    position: relative;
+    min-height: 100%;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 body {
@@ -153,6 +154,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+   transform: translateY(-140px); /* Move the images up by 100px */
 }
 
     .rps .game-container img {
@@ -161,9 +163,40 @@ body {
 
     /* RPS - Reduce image size */
     .rps .game-container img {
-        width: 100px;
-        height: 100px;
+        width: 200px;
+        height: 200px;
     }
+
+.rps .fade-out {
+    animation: fadeOut 0.5s;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.rps .fade-in {
+    animation: fadeIn 0.5s;
+    opacity: 1;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
 
 .footer {
     position: absolute;
@@ -177,11 +210,34 @@ body {
 
 /* Coin flip styling */
 .cf-coin {
-    width: 100px;
-    height: 100px;
+    width: 200px; /* Increase the size of the coin */
+    height: 200px; /* Increase the size of the coin */
     perspective: 1000px;
     position: relative;
     margin: 2rem auto;
+}
+
+.cf-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cf-controls {
+    margin-top: 2rem; /* Add spacing between the coin and controls */
+}
+
+.cf-button {
+    margin-left: 1rem;
+    margin-top: 1rem;/* Add spacing between the dropdown and the button */
+}
+.cf-results {
+    text-align: center;
+}
+
+.cf-details-list {
+    list-style-position: inside;
+    padding: 0;
 }
 
     .cf-coin .cf-heads,
@@ -216,3 +272,60 @@ body {
         transform: rotateY(1800deg);
     }
 }
+
+/*BlackJack Styling*/
+
+
+/*Error404 Styling*/
+/*.er-mainbox {
+
+    margin: auto;
+    height: 600px;
+    width: 600px;
+    position: relative;
+}
+
+.er-err {
+    color: #ffffff;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 11rem;
+    position: absolute;
+    left: 20%;
+    top: 8%;
+}
+
+.far {
+    position: absolute;
+    font-size: 8.5rem;
+    left: 42%;
+    top: 15%;
+    color: #ffffff;
+}
+
+.er-err2 {
+    color: #ffffff;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 11rem;
+    position: absolute;
+    left: 68%;
+    top: 8%;
+}
+
+.er-msg {
+    text-align: center;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 1.6rem;
+    position: absolute;
+    left: 16%;
+    top: 45%;
+    width: 75%;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }*/

@@ -8,9 +8,10 @@
     <p class="card-text">€@Model.Price</p>
     @if (Model.CategoryID == 3)
     {
-        <div class="startCasinoGame">
-            <a class="btn btn-success mt-auto start-game" asp-controller="PlayGame" asp-action="PlayGame" asp-route-gameId="@Model.GameID">Play Game for €5</a>
-        </div>
+    <form method="post" asp-controller="PlayGame" asp-action="SubtractFromWalletAndPlayGame">
+        <input type="hidden" name="gameID" value="@Model.GameID" />
+        <button type="submit" class="btn btn-success mt-auto">Play Game for €5</button>
+    </form>
     }
     else if (Model.CategoryID >= 4)
     {

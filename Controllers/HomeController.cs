@@ -36,6 +36,16 @@ namespace GamesPlatform.Controllers
             return View();
         }
 
+        public IActionResult Error404(int? statusCode = null)
+        {
+            if (statusCode.HasValue && statusCode.Value == 404)
+            {
+                return View();
+            }
+
+            return RedirectToAction("Index");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

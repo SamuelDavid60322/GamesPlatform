@@ -20,6 +20,47 @@ document.getElementById('scissors').addEventListener('click', function () {
     handleUserChoice('Scissors');
 });
 
+function onUserChoice(choice) {
+    var rock = document.getElementById("rock");
+    var paper = document.getElementById("paper");
+    var scissors = document.getElementById("scissors");
+
+    rock.classList.add("fade-out");
+    paper.classList.add("fade-out");
+    scissors.classList.add("fade-out");
+
+    setTimeout(function () {
+        showComputerChoice(choice);
+    }, 500);
+}
+
+function showComputerChoice(userChoice) {
+    const choices = ["rock", "paper", "scissors"];
+    const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+    // Fade out the choices container
+    $('#choices-container').fadeOut('slow', function () {
+        // Set the user's choice image and the computer's choice image
+        $('#user-choice').attr('src', `~/image/gameimages/${userChoice}.png`);
+        $('#computer-choice').attr('src', `~/image/gameimages/${computerChoice}.png`);
+
+        // Fade in the result container
+        $('#result-container').fadeIn('slow');
+    });
+}
+
+document.getElementById("rock").addEventListener("click", function () {
+    onUserChoice("Rock");
+});
+
+document.getElementById("paper").addEventListener("click", function () {
+    onUserChoice("Paper");
+});
+
+document.getElementById("scissors").addEventListener("click", function () {
+    onUserChoice("Scissors");
+});
+
 // Coin flip animation function
 function flipCoin() {
     var coin = document.getElementById("coin");
@@ -36,3 +77,4 @@ document.getElementById("flipBtn").addEventListener("click", function (event) {
         document.querySelector("form").submit();
     }, 10000);
 });
+

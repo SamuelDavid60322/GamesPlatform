@@ -4,6 +4,7 @@
 <table class="table  table-striped bg-dark text-white" style="border-radius: 1rem;">
     <thead class="text-white">
         <tr class="text-white">
+            <th>&nbsp;</th>
             <th class="text-white">Quantity</th>
             <th class="text-white">Game</th>
             <th class="text-right text-white">Price</th>
@@ -14,6 +15,7 @@
         @foreach (var item in Model.ShoppingCart.ShoppingCartItems)
         {
             <tr class="text-white">
+                    <td class="text-center "><a class="btn btn-danger" asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" asp-route-gameID="@item.Game.GameID">Remove From Cart</a></td>
                 <td class="text-center text-white">@item.Amount</td>
                 <td class="text-left text-white">@item.Game.GameName</td>
                 <td class="text-right text-white">@item.Game.Price.ToString("c")</td>
@@ -25,7 +27,7 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="3" class="text-right text-white">Total</td>
+            <td colspan="4" class="text-right text-white">Total</td>
             <td class="text-right text-white">@Model.ShoppingCartTotal.ToString("c")</td>
         </tr>
     </tfoot>
@@ -34,5 +36,5 @@
 <div class="text-center text-white">
     <a class="btn btn-success" asp-controller="Order" asp-action="Checkout">Check out</a>
     <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Continue Shopping</a>
-    <a class="btn btn-danger" asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart">Clear Cart</a>
+    <a class="btn btn-danger" asp-controller="ShoppingCart" asp-action="ClearCart">Clear Cart</a>
 </div>

@@ -6,32 +6,38 @@
 
 <h1 class="text-white">@ViewData["Title"]</h1>
 
-<form asp-action="Flip" method="post" onsubmit="return flipCoinAnimation(event)">
-    <div class="form-group">
-        <label for="PlayerChoice" class="text-white">Choose Heads or Tails:</label>
-        <select id="PlayerChoice" name="PlayerChoice" class="form-control">
-            <option value="Heads">Heads</option>
-            <option value="Tails">Tails</option>
-        </select>
+<div class="cf-container">
+    <div class="cf-coin" id="coin">
+        <div class="cf-heads">H</div>
+        <div class="cf-tails">T</div>
     </div>
-    <button type="submit" class="btn btn-primary">Flip the Coin</button>
-</form>
 
-<div class="cf-coin" id="coin">
-  <div class="cf-heads">H</div>
-  <div class="cf-tails">T</div>
+    <div class="cf-controls">
+        <form asp-action="Flip" method="post" onsubmit="return flipCoinAnimation(event)">
+            <div class="form-group">
+                <label for="PlayerChoice" class="text-white"><strong>Choose Heads or Tails:</strong></label>
+                <select id="PlayerChoice" name="PlayerChoice" class="form-control">
+                    <option value="Heads">Heads</option>
+                    <option value="Tails">Tails</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary cf-button">Flip the Coin</button>
+        </form>
+    </div>
 </div>
 
 @if (Model?.IsWinner != null)
 {
-    <h2 class="text-white">Result: @Model.Result</h2>
-    <h2 class="@(Model.IsWinner.Value ? "text-success" : "text-danger")">@(Model.IsWinner.Value ? "You won!" : "You lost.")</h2>
-    <h3 class="text-white">Game Details:</h3>
-    <ul class="text-white">
-        <li class="text-white">User Choice: @Model.CasinoResult.UserChoice</li>
-        <li class="text-white">Computer Choice: @Model.CasinoResult.ComputerChoice</li>
-        <li class="text-white">Result: @Model.CasinoResult.Result</li>
-        <li class="text-white">Amount Won: @Model.CasinoResult.AmountWon</li>
-    </ul>
+    <div class="cf-results">
+        <h2 class="text-white">Result: @Model.Result</h2>
+        <h2 class="@(Model.IsWinner.Value ? "text-success" : "text-danger")">@(Model.IsWinner.Value ? "You won!" : "You lost.")</h2>
+        <h3 class="text-white">Game Details:</h3>
+        <ul class="text-white cf-details-list">
+            <li class="text-white">User Choice: @Model.CasinoResult.UserChoice</li>
+            <li class="text-white">Computer Choice: @Model.CasinoResult.ComputerChoice</li>
+            <li class="text-white">Result: @Model.CasinoResult.Result</li>
+            <li class="text-white">Amount Won: @Model.CasinoResult.AmountWon</li>
+        </ul>
+    </div>
 }
 <script src="~/js/coin.js" asp-append-version="true"></script>

@@ -42,7 +42,7 @@ namespace GamesPlatform.Controllers
 
                             };
                             _verificationRepository.CreateVerification(verificationRequest);
-                            ViewBag.SuccessMessage = "You have submitted your photo ID for verification. This will be processed by an admin shortly. You will not be able to play casino games until it has been verified";
+                            ViewBag.SuccessMessage = "Thank you for submitting your ID to get access to casino games. Estimated wait time is 1-2 days so check back later  ";
                         }
                         else
                         {
@@ -53,19 +53,19 @@ namespace GamesPlatform.Controllers
             }
             else if (verificationExists.Status == "Approved")
             {
-                ViewBag.ErrorMessage = "Your account is already verified";
+                ViewBag.ErrorMessage = "YThis account is approved already and allowed to play Casino Games.";
             }
             else if (verificationExists.Status == "Denied")
             {
-                ViewBag.ErrorMessage = "Your photo ID could not be verified. Contact support if you think this is a mistake";
+                ViewBag.ErrorMessage = "Your Verification Request has been rejected by Gamesino Admins. Email support if you think this is an mistake.";
             }
             else if (verificationExists.Status == "Pending")
             {
-                ViewBag.ErrorMessage = "Your verification request is currently pending";
+                ViewBag.ErrorMessage = "Your Verification request is currently being reviewed by Gamesino Admins. Check back Later";
             }
             else if (verificationExists.Status == "")
             {
-                ViewBag.ErrorMessage = "Something went wrong with your verification. Please contact an admin";
+                ViewBag.ErrorMessage = "There seems to be an issue with your request. Contact support as soon as yyou can to resolve this.";
             }
 
             return View();

@@ -52,6 +52,7 @@ namespace GamesPlatform
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseStatusCodePagesWithReExecute("/Home/Error404", "?statusCode={0}");
             app.UseSession();
             app.UseRouting();
             app.UseAuthorization();
