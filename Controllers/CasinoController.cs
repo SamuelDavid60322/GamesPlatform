@@ -25,6 +25,7 @@ namespace GamesPlatform.Controllers
             _walletRepository = walletRepository;
             _verificationRepository = verificationRepository;
         }
+        [Authorize]
         public IActionResult Index()
         {
             if (User.Identity.IsAuthenticated)

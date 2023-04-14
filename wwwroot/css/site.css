@@ -277,7 +277,7 @@ body {
 
 
 /*Error404 Styling*/
-/*.er-mainbox {
+.er-mainbox {
 
     margin: auto;
     height: 600px;
@@ -328,4 +328,4 @@ a {
 
     a:hover {
         text-decoration: underline;
-    }*/
+    }

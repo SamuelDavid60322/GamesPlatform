@@ -33,7 +33,7 @@ namespace GamesPlatform.Controllers
             var items = _shoppingCart.GetShoppingCartItems();
             _shoppingCart.ShoppingCartItems = items;
 
-            if(_shoppingCart.ShoppingCartItems.Count ==0)
+            if (_shoppingCart.ShoppingCartItems.Count ==0)
             {
                 ModelState.AddModelError("", "Cart is Empty");
             }

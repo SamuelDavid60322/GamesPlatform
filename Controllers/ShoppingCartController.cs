@@ -19,6 +19,10 @@ namespace GamesPlatform.Controllers
         public ViewResult Index()
         {
             var items= _shoppingCart.GetShoppingCartItems();
+
+            // Check if the shopping cart is empty and store it in ViewBag
+            ViewBag.IsEmpty = (items.Count == 0);
+
             _shoppingCart.ShoppingCartItems = items;
 
             var sCVM = new ShoppingCartViewModel

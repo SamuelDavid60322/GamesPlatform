@@ -62,8 +62,8 @@ namespace GamesPlatform.Controllers
           },
         },
                 Mode = "payment",
-                SuccessUrl = "https://gamesino.azurewebsites.net/Payments/Success?session_id={CHECKOUT_SESSION_ID}",
-                CancelUrl = "https://gamesino.azurewebsites.net/Payments/Cancel",
+                SuccessUrl = "https://localhost:7290//Payments/Success?session_id={CHECKOUT_SESSION_ID}",
+                CancelUrl = "https://localhost:7290//Payments/Cancel",
             };
 
             var service = new SessionService();
