@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GamesPlatform.Controllers
 {
+    [Authorize]
     public class ShoppingCartController : Controller
     {
         private readonly IGamesRepository _gamesRepository;

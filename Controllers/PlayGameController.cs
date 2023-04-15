@@ -5,6 +5,7 @@ using System.Security.Claims;
 
 namespace GamesPlatform.Controllers
 {
+    [Authorize]
     public class PlayGameController : Controller
     {
         private readonly IWalletRepository _walletRepository;

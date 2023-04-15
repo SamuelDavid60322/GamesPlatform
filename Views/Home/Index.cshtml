@@ -10,7 +10,12 @@
 <div class="row">
     @foreach(var game in Model.FeaturedGames)
     {
-        @Html.Partial("GameCard", game)
+        bool userHasGame = Model.PurchasedGameIDs.Contains(game.GameID);
+        var partialViewData = new ViewDataDictionary(ViewData)
+        {
+            { "UserHasGame", userHasGame }
+        };
+        @Html.Partial("GameCard", game, partialViewData)
     }
 </div>
 

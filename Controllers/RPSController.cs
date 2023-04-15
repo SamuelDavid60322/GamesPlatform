@@ -6,6 +6,7 @@ using System.Security.Claims;
 
 namespace GamesPlatform.Controllers
 {
+    [Authorize]
     public class RPSController : Controller
     {
         private readonly IGamesRepository _gamesRepository;

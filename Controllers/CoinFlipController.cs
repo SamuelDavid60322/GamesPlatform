@@ -3,6 +3,7 @@ using GamesPlatform.Interfaces;
 using GamesPlatform.Models;
 using GamesPlatform.Repositories;
 using GamesPlatform.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using System.Security.Claims;
 
 namespace GamesPlatform.Controllers
 {
+    [Authorize]
     public class CoinFlipController : Controller
     {
         private readonly ApplicationDbContext _applicationDbContext;

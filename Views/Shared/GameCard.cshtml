@@ -1,7 +1,10 @@
 ﻿@model Game
+@{
+    bool userHasGame = ViewData.ContainsKey("UserHasGame") && (bool)ViewData["UserHasGame"];
+}
 
 <div class="card col-sm-4 col-lg-4 col-md-4">
-  <img class="card-img-top" src="@Model.GameImageThumbnailUrl" alt="Card image cap">
+    <img class="card-img-top" src="@Model.GameImageThumbnailUrl" width="348" height="348" alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title">@Model.GameName</h5>
     <p class="card-text">@Model.GameDescription</p>
@@ -22,7 +25,7 @@
     else
     {
         <div class="addToCart text-right text-white">
-            @if (ViewData["UserHasGame"] != null && (bool)ViewData["UserHasGame"])
+            @if (ViewData["UserHasGame"] != null && (bool)ViewData["UserHasGame"] == true)
             {
                 <a class="btn btn-success text-white" asp-controller="PlayGame" asp-action="PlayGame" asp-route-gameId="@Model.GameID">Play Game</a>
             }

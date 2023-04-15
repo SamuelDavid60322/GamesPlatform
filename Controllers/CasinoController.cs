@@ -11,6 +11,7 @@ using System.Security.Claims;
 
 namespace GamesPlatform.Controllers
 {
+    [Authorize]
     public class CasinoController : Controller
     {
         private readonly IGamesRepository _gamesRepository;

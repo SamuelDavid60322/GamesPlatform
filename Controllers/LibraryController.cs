@@ -10,6 +10,7 @@ using System.Security.Claims;
 
 namespace GamesPlatform.Controllers
 {
+    [Authorize]
     public class LibraryController : Controller
     {
         private readonly IGamesRepository _gamesRepository;

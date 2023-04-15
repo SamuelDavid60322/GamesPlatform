@@ -2,6 +2,7 @@
 using GamesPlatform.Interfaces;
 using GamesPlatform.Models;
 using GamesPlatform.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using System.Drawing.Text;
 
 namespace GamesPlatform.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;

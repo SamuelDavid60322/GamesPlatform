@@ -1,8 +1,11 @@
-﻿using GamesPlatform.Interfaces;
+﻿using GamesPlatform.Data;
+using GamesPlatform.Interfaces;
 using GamesPlatform.Models;
 using GamesPlatform.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace GamesPlatform.Controllers
 {
@@ -10,18 +13,33 @@ namespace GamesPlatform.Controllers
     {
         
         private readonly IGamesRepository _gamesRepository;
-        
-        public HomeController(IGamesRepository gamesRepository)
+        private readonly ApplicationDbContext _applicationDbContext;
+
+
+        public HomeController(IGamesRepository gamesRepository, ApplicationDbContext applicationDbContext)
         {
             _gamesRepository = gamesRepository;
+            _applicationDbContext = applicationDbContext;
         }
 
         public ViewResult Index()
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var purchasedGameIDs = new List<int>();
+            if (userId != null)
+            {
+                purchasedGameIDs = _applicationDbContext.OrderDetails
+                    .Include(od => od.Order)
+                    .Where(od => od.Order.UserID == userId)
+                    .Select(od => od.GameID)
+                    .ToList();
+            }
+
             var homeViewModel = new HomeViewModel
             {
                 FeaturedGames = _gamesRepository.FeaturedGames,
-                FreeGames = _gamesRepository.FreeGames
+                FreeGames = _gamesRepository.FreeGames,
+                PurchasedGameIDs = purchasedGameIDs
             };
             return View(homeViewModel);
         }

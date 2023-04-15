@@ -63,8 +63,8 @@ namespace GamesPlatform.Controllers
           },
         },
                 Mode = "payment",
-                SuccessUrl = "https://gamesino.azurewebsites.net/Payments/Success?session_id={CHECKOUT_SESSION_ID}",
-                CancelUrl = "https://gamesino.azurewebsites.net/Payments/Cancel",
+                SuccessUrl = "https://localhost:7290/Payments/Success?session_id={CHECKOUT_SESSION_ID}",
+                CancelUrl = "https://localhost:7290/Payments/Cancel",
             };
 
             var service = new SessionService();
@@ -144,7 +144,7 @@ namespace GamesPlatform.Controllers
                 // If there's no addedAmount query parameter, create the order.
                 string sessionId = HttpContext.Request.Query["session_id"];
                 _orderRepository.CreateOrder(items, userId, firstName, lastName, addressLine1, addressLine2, zipCode, city, country, phoneNumber, email);
-            
+                _shoppingCart.ClearCart();
 
             return View();
         }

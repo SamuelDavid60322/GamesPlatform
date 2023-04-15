@@ -321,11 +321,11 @@ body {
     width: 75%;
 }
 
-a {
+er-a {
     text-decoration: none;
     color: white;
 }
 
-    a:hover {
+    er-a:hover {
         text-decoration: underline;
     }
