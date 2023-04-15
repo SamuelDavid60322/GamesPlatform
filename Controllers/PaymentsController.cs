@@ -35,6 +35,7 @@ namespace GamesPlatform.Controllers
     
             StripeConfiguration.ApiKey = "sk_test_51MLfkELqDZptVo03ItEDQzIaHydvHEVvyIw7SV0Z0GmzqsDWyxV3lEWLkHzfnr4nrnxxInRobfod8LpmiLdlBqSw00oEP5ziP9";
         }
+        [Authorize]
 
         [HttpPost("create-checkout-session")]
         public IActionResult CreateCheckoutSession()
@@ -62,8 +63,8 @@ namespace GamesPlatform.Controllers
           },
         },
                 Mode = "payment",
-                SuccessUrl = "https://gamesino.azurewebsites.net//Payments/Success?session_id={CHECKOUT_SESSION_ID}",
-                CancelUrl = "https://gamesino.azurewebsites.net//Payments/Cancel",
+                SuccessUrl = "https://gamesino.azurewebsites.net/Payments/Success?session_id={CHECKOUT_SESSION_ID}",
+                CancelUrl = "https://gamesino.azurewebsites.net/Payments/Cancel",
             };
 
             var service = new SessionService();
@@ -73,6 +74,7 @@ namespace GamesPlatform.Controllers
             return new StatusCodeResult(303);
         }
 
+        [Authorize]
         [HttpPost("create-funds-checkout-session")]
         public IActionResult CreateFundsCheckoutSession(decimal amount)
         {
@@ -110,8 +112,8 @@ namespace GamesPlatform.Controllers
                 { "user_id", userId },
             },
                 },
-                SuccessUrl = $"https://gamesino.azurewebsites.net/Success?session_id={{CHECKOUT_SESSION_ID}}&user_id={WebUtility.UrlEncode(userId)}&added_amount={WebUtility.UrlEncode(amount.ToString(CultureInfo.InvariantCulture))}",
-                CancelUrl = "https://gamesino.azurewebsites.net/Cancel",
+                SuccessUrl = $"https://gamesino.azurewebsites.net/Payments/AddFundsSuccess?session_id={{CHECKOUT_SESSION_ID}}&user_id={WebUtility.UrlEncode(userId)}&added_amount={WebUtility.UrlEncode(amount.ToString(CultureInfo.InvariantCulture))}",
+                CancelUrl = "https://gamesino.azurewebsites.net/Payments/Cancel",
             };
 
             var service = new SessionService();
@@ -139,23 +141,38 @@ namespace GamesPlatform.Controllers
             int orderId = 0;
             int amount = 0;
 
-            // Get the user ID and added amount from the query parameters
-            string UserId = HttpContext.Request.Query["user_id"];
-            decimal addedAmount = Convert.ToDecimal(HttpContext.Request.Query["added_amount"]);
-            _walletRepository.AddFundsToWallet(UserId, addedAmount);
-
-
-            string sessionId = HttpContext.Request.Query["session_id"];
-            _orderRepository.CreateOrder(items, userId, firstName, lastName, addressLine1, addressLine2, zipCode, city, country, phoneNumber, email);
+                // If there's no addedAmount query parameter, create the order.
+                string sessionId = HttpContext.Request.Query["session_id"];
+                _orderRepository.CreateOrder(items, userId, firstName, lastName, addressLine1, addressLine2, zipCode, city, country, phoneNumber, email);
+            
 
             return View();
         }
 
+
+        [Authorize]
+        public IActionResult AddFundsSuccess()
+        {
+            // Get the user ID and added amount from the query parameters
+            string userId = HttpContext.Request.Query["user_id"];
+            string addedAmountString = HttpContext.Request.Query["added_amount"];
+
+            if (!string.IsNullOrEmpty(addedAmountString))
+            {
+                decimal parsedAddedAmount = Convert.ToDecimal(addedAmountString);
+                _walletRepository.AddFundsToWallet(userId, parsedAddedAmount);
+            }
+
+            return View();
+        }
+
+        [Authorize]
         public IActionResult Cancel()
         {
             return View();
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             _shoppingCart.ShoppingCartItems = _shoppingCart.GetShoppingCartItems();

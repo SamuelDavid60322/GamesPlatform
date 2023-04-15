@@ -1,11 +1,13 @@
 ﻿using GamesPlatform.Interfaces;
 using GamesPlatform.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.CompilerServices;
 using System.Security.Claims;
 
 namespace GamesPlatform.Controllers
 {
+    [Authorize]
     public class WalletController : Controller
     {
         private readonly IWalletRepository _walletRepository;

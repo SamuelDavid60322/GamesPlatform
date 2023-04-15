@@ -24,10 +24,12 @@ namespace GamesPlatform.Controllers
             _walletRepository = walletRepository;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             return View();
         }
+        [Authorize]
         [HttpPost]
         public IActionResult Index(Withdraw withdrawMade)
         {
