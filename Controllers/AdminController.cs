@@ -10,7 +10,7 @@ using System.Drawing.Text;
 
 namespace GamesPlatform.Controllers
 {
-    [Authorize]
+    [Authorize(Policy = "AdminOnly")]
     public class AdminController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;

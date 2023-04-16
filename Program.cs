@@ -35,6 +35,13 @@ namespace GamesPlatform
             builder.Services.AddTransient<IVerificationRepository, VerificationRepository>();
             builder.Services.AddMvc();
 
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminOnly", policy =>
+                    policy.RequireAssertion(context =>
+                        context.User.Identity.IsAuthenticated && context.User.Identity.Name == "admin@gamesino.com"));
+            });
+
             builder.Services.AddMemoryCache();
             builder.Services.AddSession();
             var app = builder.Build();
