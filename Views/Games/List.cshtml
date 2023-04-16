@@ -6,6 +6,7 @@
 
 <h1 class="text-white">@Model.CurrentCategory</h1>
 
+<div class="row">
 @{
     foreach (Game game in Model.Games)
     {
@@ -18,3 +19,4 @@
         @Html.Partial("GameCard", game, partialViewData)
     }
 }
+</div>
