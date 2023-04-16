@@ -6,7 +6,6 @@
     <title>@ViewData["Title"] - Gamesino</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/GamesPlatform.styles.css" asp-append-version="true" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -59,11 +58,11 @@
                         <li class="nav-item">
                             <a class="nav-link text-white">@await Component.InvokeAsync("ShoppingCartSummary")</a>
                         </li>
-                    <form class="navbar-form navbar-right nav-item" asp-controller="Games" asp-action="Search" method="get">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search for a Game" name="searchString" value="@ViewData["searchString"]">
-                        </div>
-                    </form>
+                        <form class="navbar-form navbar-right" asp-controller="Games" asp-action="List" method="get">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search for a Game" name="searchString" value="@ViewData["searchString"]">
+                            </div>
+                        </form>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

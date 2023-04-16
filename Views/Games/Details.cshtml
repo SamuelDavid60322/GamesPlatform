@@ -1,27 +1,48 @@
 ﻿@model Game
+@{
+    bool userHasGame = ViewData.ContainsKey("UserHasGame") && (bool)ViewData["UserHasGame"];
+}
 
-<div class="card col-sm-4 col-lg-4 col-md-4">
-  <img class="card-img-top" src="@Model.GameImageThumbnailUrl" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">@Model.GameName</h5>
-    <p class="card-text">@Model.GameDescription</p>
-    <p class="card-text">€@Model.Price</p>
-    @if (Model.CategoryID >=4){
-      <div class="startCasinoGame">
-       <a class="btn btn-success mt-auto start-game" asp-controller="Games" asp-action="hol" asp-route-gameId="@Model.GameID">Play Game</a>
+<div class="card col-12 col-md-6 col-lg-4">
+    <div class="card-img-container">
+        <img class="card-img-top" src="@Model.GameImageThumbnailUrl" alt="Card image cap">
+    </div>
+    <div class="card-bottom text-white">
+        <h5 class="card-title">@Model.GameName</h5>
+        <p class="card-text">@Model.GameDescription</p>
+        <p class="card-text">€@Model.Price</p>
+        @if (Model.CategoryID == 3)
+        {
+            <form method="post" asp-controller="PlayGame" asp-action="SubtractFromWalletAndPlayGame">
+                <input type="hidden" name="gameID" value="@Model.GameID" />
+                <button type="submit" class="btn btn-success mt-auto">Play Game for €5</button>
+            </form>
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger mt-2">
+                    <p>@TempData["ErrorMessage"]</p>
+                    <a class="btn btn-primary" asp-controller="Withdraw" asp-action="Index">Add Funds</a>
+                </div>
+            }
+        }
+        else if (Model.CategoryID >= 4)
+        {
+            <div class="startFreeGame">
+                <a class="btn btn-success mt-auto start-game" asp-controller="PlayGame" asp-action="PlayGame" asp-route-gameId="@Model.GameID">Start Game</a>
             </div>
-        } else
+        }
+        else
         {
             <div class="addToCart text-right text-white">
-             <p class="btn btn-success">
-             <a class="btn btn-success text-white" id= "cartButton"
-             asp-controller="ShoppingCart"
-             asp-action="AddToShoppingCart"
-              asp-route-gameID="@Model.GameID">
-              Add To Cart
-             </a>
-            </p>        
-        </div>
+                @if (ViewData["UserHasGame"] != null && (bool)ViewData["UserHasGame"] == true)
+                {
+                    <a class="btn btn-success text-white" asp-controller="PlayGame" asp-action="PlayGame" asp-route-gameId="@Model.GameID">Play Game</a>
+                }
+                else
+                {
+                    <a class="btn btn-success text-white" id="cartButton" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-gameID="@Model.GameID">Add To Cart</a>
+                }
+            </div>
         }
-  </div>
-</div>on
+    </div>
+</div>

@@ -10,12 +10,11 @@
 @{
     foreach (Game game in Model.Games)
     {
-
         bool userHasGame = Model.PurchasedGameIDs.Contains(game.GameID);
         var partialViewData = new ViewDataDictionary(ViewData)
-    {
-        { "UserHasGame", userHasGame }
-    };
+        {
+            { "UserHasGame", userHasGame }
+        };
         @Html.Partial("GameCard", game, partialViewData)
     }
 }

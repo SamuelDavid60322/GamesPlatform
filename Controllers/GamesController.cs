@@ -23,7 +23,7 @@ namespace GamesPlatform.Controllers
 
         }
 
-        public ViewResult List(string category)
+        public ViewResult List(string category, string searchString = null)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var purchasedGameIDs = new List<int>();
@@ -52,6 +52,12 @@ namespace GamesPlatform.Controllers
                 currentCategory = _categoryRepository.Categories.FirstOrDefault(currentCategory => currentCategory.CategoryName == category)?.CategoryName;
             }
 
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                games = games.Where(g => g.GameName.Contains(searchString, StringComparison.OrdinalIgnoreCase));
+            }
+
+            ViewData["searchString"] = searchString;
             return View(new GameListViewModel
             {
                 Games = games,
@@ -61,23 +67,23 @@ namespace GamesPlatform.Controllers
         }
 
 
-        public ViewResult Search(string searchString)
-        {
-            string _searchString = searchString;
-            IEnumerable<Game> games;
-            string currentCategory = string.Empty;
+        //public ViewResult Search(string searchString)
+        //{
+        //    string _searchString = searchString;
+        //    IEnumerable<Game> games;
+        //    string currentCategory = string.Empty;
 
-            if (string.IsNullOrEmpty(_searchString))
-            {
-                games = _gamesRepository.Games.OrderBy(p => p.GameID);
-            }
-            else
-            {
-                games = _gamesRepository.Games.Where(p => p.GameName.Contains(_searchString));
-            }
+        //    if (string.IsNullOrEmpty(_searchString))
+        //    {
+        //        games = _gamesRepository.Games.OrderBy(p => p.GameID);
+        //    }
+        //    else
+        //    {
+        //        games = _gamesRepository.Games.Where(p => p.GameName.Contains(_searchString));
+        //    }
 
-            return View("~/Views/Games/List.cshtml", new GameListViewModel { Games = games, CurrentCategory = "All Games" });
-        }
+        //    return View("~/Views/Games/List.cshtml", new GameListViewModel { Games = games, CurrentCategory = "All Games" });
+        //}
 
         public ViewResult Details(int gameId)
         {
