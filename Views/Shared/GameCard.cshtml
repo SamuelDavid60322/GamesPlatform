@@ -3,9 +3,11 @@
     bool userHasGame = ViewData.ContainsKey("UserHasGame") && (bool)ViewData["UserHasGame"];
 }
 
-<div class="card col-sm-4 col-lg-4 col-md-4">
-    <img class="card-img-top" src="@Model.GameImageThumbnailUrl" width="348" height="348" alt="Card image cap">
-  <div class="card-body">
+<div class="card col-12 col-md-6 col-lg-4">
+  <div class="card-img-container">
+    <img class="card-img-top" src="@Model.GameImageThumbnailUrl" alt="Card image cap">
+  </div>
+  <div class="card-bottom text-white">
     <h5 class="card-title">@Model.GameName</h5>
     <p class="card-text">@Model.GameDescription</p>
     <p class="card-text">€@Model.Price</p>
@@ -15,6 +17,13 @@
         <input type="hidden" name="gameID" value="@Model.GameID" />
         <button type="submit" class="btn btn-success mt-auto">Play Game for €5</button>
     </form>
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger mt-2">
+                <p>@TempData["ErrorMessage"]</p>
+                <a class="btn btn-primary" asp-controller="Withdraw" asp-action="Index">Add Funds</a>
+            </div>
+        }
     }
     else if (Model.CategoryID >= 4)
     {

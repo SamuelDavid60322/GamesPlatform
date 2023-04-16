@@ -1,7 +1,7 @@
 ﻿@model PaginatedList<Verification>
 
 @{
-    ViewData["Title"] = "ViewGames";
+    ViewData["Title"] = "View Verification Requests";
 }
 <p>
     <a asp-action="Index"></a>
@@ -11,24 +11,24 @@
 
 <form asp-action="ViewVerificationRequests" method="get">
     <div class="form-actions no-color">
-        <p class="text-white">
-            Search by user ID: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
-            <input type="submit" value="Search" class="btn btn-primary" /> |
-            <a asp-action="ViewVerificationRequests">Back to Full List</a>
-        </p>
+<p class="text-white d-inline-block">
+    Search by user ID: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+    <input type="submit" value="Search" class="btn btn-primary" />
+</p>
+<a class="btn btn-secondary d-inline-block ml-2" asp-action="ViewVerificationRequests">Refresh</a>
     </div>
 </form>
 
-<table class="table table-light table-striped table-hover">
+<table class="table table-dark table-striped table-hover">
     <thead>
         <tr>
-            <th>
+            <th class ="text-white">
                 <a asp-action="ViewVerificationRequests" asp-route-sortOrder="@ViewData["StatusSortParam"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Status</a>
             </th>
-            <th class="text-white">
+            <th>
                 User ID
             </th>
-            <th>
+            <th class="text-white">
                 <a asp-action="ViewVerificationRequests" asp-route-sortOrder="@ViewData["DateOfRequestSortParam"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Date Of Request</a>
             </th>
             <th>

@@ -144,6 +144,54 @@ body {
     font-weight: bold;
 }
 
+/*Game Card Styling*/
+.card {
+    margin-bottom: 15px;
+    overflow: hidden;
+    border: none;
+    background: none;
+    box-shadow: none;
+}
+
+.card-bottom {
+    background-color: #1b2845;
+    background-image: linear-gradient(315deg, #1b2845 0%, #274060 74%);
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+.card-img-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    overflow: hidden;
+}
+
+.card-img-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform-origin: center center;
+}
+
+    .card-img-top:hover {
+        transform: scale(1.1);
+        transition: transform 0.3s ease-in-out;
+    }
+
+
+/*Play Game Styling*/
+.game-frame {
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    padding: 10px;
+}
+
 .rps img {
     background-color: transparent;
 }

@@ -25,6 +25,13 @@ namespace GamesPlatform.Controllers
         {
             string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             decimal amountToSubtract = 5.00M;
+            decimal userBalance = _walletRepository.GetBalance(userId);
+            if (userBalance < amountToSubtract)
+            {
+                TempData["ErrorMessage"] = "Add some funds to your account in order to play this game.";
+                return RedirectToAction("Index", "Casino");
+            }
+
 
             _walletRepository.SubtractFromWallet(userId, amountToSubtract);
             return RedirectToAction("PlayGame", new { GameID = gameID });

@@ -4,49 +4,47 @@
     ViewData["Title"] = "Update Verification Request";
 }
 
-<h1 class="text-white">Update</h1>
-
-<h4 class="text-white">Verification</h4>
-<p class="text-white">Determine if the photo ID submitted by the user is legitimate based on the image provided.</p>
-<div>
-    <a asp-action="ViewVerificationRequests">Back to List</a>
-</div>
+<h4 class="text-white">Update Verification Requests</h4>
+<p class="text-white">Accept images that have followed proper guidelines on Verification submission and of legal age in related country.</p>
 <hr />
 <div class="row">
     <div class="col-md-6">
         <form asp-action="UpdateRequestPost" class="card">
             <div class="card-body text-dark">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group text-dark">
-                    <label asp-for="VerificationID" class="control-label"></label><br />
-                    <strong>@Html.DisplayFor(modelItem => Model.VerificationID)</strong>
-                </div>
-                <div class="form-group text-dark">
-                    <label asp-for="UserID" class="control-label"></label><br />
-                    <strong>@Html.DisplayFor(modelItem => Model.UserID)</strong>
-                </div>
-                <div class="form-group text-dark">
-                    <label asp-for="DateOfRequest" class="control-label"></label><br />
-                    <strong>@Html.DisplayFor(modelItem => Model.DateOfRequest)</strong>
-                </div>
-                <div class="form-group text-dark ">
-                    <label asp-for="Status" class="control-label">Current Status</label><br />
-                    <strong>@Html.DisplayFor(modelItem => Model.Status)</strong>
-                </div>
-                <div class="form-group text-dark">
-                    <label asp-for="Status" class="control-label"></label>
-                    <select asp-for="Status" class="form-control">
-                        <option value="Approved">Approved</option>
-                        <option value="Denied">Denied</option>
-                    </select>
-                    <span asp-validation-for="Status" class="text-danger"></span>
-                </div>
-                <div class="form-group text-dark">
-                    <input type="submit" value="Update" class="btn btn-primary" asp-route-verificationId="@Model.VerificationID" />
-                </div>
-                <div>
-                    <a asp-action="ViewVerificationRequests">Back to List</a>
-                </div>
+                <table class="table table-dark">
+                    <tbody>
+                        <tr>
+                            <td><label asp-for="VerificationID" class="control-label">Verification ID:</label></td>
+                            <td><strong>@Html.DisplayFor(modelItem => Model.VerificationID)</strong></td>
+                        </tr>
+                        <tr>
+                            <td><label asp-for="UserID" class="control-label">User ID:</label></td>
+                            <td><strong>@Html.DisplayFor(modelItem => Model.UserID)</strong></td>
+                        </tr>
+                        <tr>
+                            <td><label asp-for="DateOfRequest" class="control-label">Date of Request:</label></td>
+                            <td><strong>@Html.DisplayFor(modelItem => Model.DateOfRequest)</strong></td>
+                        </tr>
+                        <tr>
+                            <td><label asp-for="Status" class="control-label">Current Status:</label></td>
+                            <td><strong>@Html.DisplayFor(modelItem => Model.Status)</strong></td>
+                        </tr>
+                        <tr>
+                            <td><label asp-for="Status" class="control-label">Update Status:</label></td>
+                            <td>
+                                <select asp-for="Status" class="form-control">
+                                    <option value="Approved">Approved</option>
+                                    <option value="Denied">Denied</option>
+                                </select>
+                                <span asp-validation-for="Status" class="text-danger"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            <div class="form-group text-dark d-flex">
+                <input type="submit" value="Update" class="btn btn-primary" asp-route-verificationId="@Model.VerificationID" />
+                <a class="btn btn-secondary ml-2" asp-action="ViewVerificationRequests">Back to List</a>
+            </div>
             </div>
         </form>
     </div>
