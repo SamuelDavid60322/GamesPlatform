@@ -42,6 +42,11 @@
                                 <a class="nav-link text-white" asp-area="" asp-controller="Order" asp-action="Index">Order History</a>
                             }
                         </li>
+                         <li class="nav-item">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a class="nav-link text-white" asp-area="" asp-controller="Withdraw" asp-action="Index">Add Funds</a>
+                            }
                         <li class="nav-item">
                             @if (User.Identity.IsAuthenticated && User.Identity.Name == "admin@gamesino.com")
                             {
