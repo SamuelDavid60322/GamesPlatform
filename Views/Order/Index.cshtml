@@ -36,10 +36,10 @@
                                 }
                             </ul>
                         </td>
-                        <td class="align-middle">
+                        <td class="align-middle text-white">
                             @order.OrderDetails.Select(m => m.Game.Price * m.Amount).Sum().ToString("c")
                         </td>
-                        <td class="align-middle"> @order.UserID </td>
+                        <td class="align-middle text-white"> @order.UserID </td>
                     </tr>
                 }
             </tbody>
