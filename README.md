@@ -8,3 +8,8 @@ ASP.NET Identity
 C#
 Microsoft Azure SQL Database
 Bootstrap 
+Stripe
+Paypal
+
+
+You can access the website here: https://gamesino.azurewebsites.net/
