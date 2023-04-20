@@ -37,6 +37,10 @@ body {
     backdrop-filter: blur(50px);
 }
 
+.form-section {
+    margin-bottom: 110px; /* Adjust this value according to your needs */
+}
+
 /*Layout Navbar Styling*/
 
 .navbar {

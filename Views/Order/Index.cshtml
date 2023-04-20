@@ -30,14 +30,14 @@
                                 {
                                     <li>
                                         <div class="alert alert-info" role="alert">
-                                            <span class="badge bg-primary">@item.Amount</span> [@item.Price.ToString("c")] - @item.Game.GameName
+                                            <span class="badge bg-primary">@item.Amount</span> [€@item.Price.ToString("F")] - @item.Game.GameName
                                         </div>
                                     </li>
                                 }
                             </ul>
                         </td>
                         <td class="align-middle text-white">
-                            @order.OrderDetails.Select(m => m.Game.Price * m.Amount).Sum().ToString("c")
+                            €@order.OrderDetails.Select(m => m.Game.Price * m.Amount).Sum().ToString("F")
                         </td>
                         <td class="align-middle text-white"> @order.UserID </td>
                     </tr>
